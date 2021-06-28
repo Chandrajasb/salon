@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap');
+$font-1:'Montserrat', sans-serif;
+
+
+
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin glass {
+    background: rgba(248, 248, 248, 0.64);
+  box-shadow: 0px 0.5px 20px 5px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+    
+}
