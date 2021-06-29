@@ -12,10 +12,18 @@
     ></script>
   </head>
   <body>
-    <section class="background">
-      <div class="container">
-        <h1>Login</h1>
+    <section class="background bg2">
+      <div class="container con-right">
+        <h1>Signup</h1>
         <form class="form-div" action="">
+          <div class="input-box">
+            <i class="fas fa-user-alt"></i>
+            <input type="text" placeholder="Name" required />
+          </div>
+          <div class="input-box">
+            <i class="fas fa-envelope"></i>
+            <input type="email" placeholder="Email Id" required />
+          </div>
           <div class="input-box">
             <i class="fas fa-phone-alt"></i>
             <input
@@ -30,8 +38,12 @@
             <i class="fas fa-lock"></i>
             <input type="password" placeholder="Your Password" required />
           </div>
-          <button class="submit-btn" type="submit">Login</button>
-          <a href="./signup.html"><p>Don't you have an account?</p></a>
+          <div class="input-box">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Confirm your Password" required />
+          </div>
+          <button class="submit-btn" type="submit">Signup</button>
+          <a href="./login.html"><p>Already have an account?</p></a>
         </form>
       </div>
     </section>

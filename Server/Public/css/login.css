@@ -11,6 +11,16 @@
   background-size: cover;
 }
 
+.bg2 {
+  background-image: url("./../assets/signupbg.jpg");
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
 .container {
   min-height: 100vh;
   width: 30%;
@@ -40,9 +50,17 @@
   font-size: 32px;
 }
 
+.con-right {
+  float: center;
+}
+
 .form-div {
   margin: 4vh;
   width: 60%;
+}
+
+.form-div a {
+  text-decoration: none;
 }
 
 .form-div p {
@@ -51,6 +69,7 @@
   margin-top: 2vh;
   cursor: pointer;
   font-size: 14px;
+  color: #000;
 }
 
 .form-div p:hover {
