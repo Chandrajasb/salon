@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Salon</title>
-    <link rel="stylesheet" href="./../../Public/css/login.css" />
+    <link rel="stylesheet" href="css/login.css" />
     <script
       src="https://kit.fontawesome.com/154fa5a621.js"
       crossorigin="anonymous"
@@ -15,7 +15,7 @@
     <section class="background">
       <div class="container">
         <h1>Login</h1>
-        <form class="form-div" action="">
+        <form class="form-div" action="/login" method="POST">
           <div class="input-box">
             <i class="fas fa-phone-alt"></i>
             <input
@@ -24,11 +24,12 @@
               required
               pattern="[0-9]{10}"
               title="Mobile should not contain letters and more than 10 digits"
+              name="phone_no"
             />
           </div>
           <div class="input-box">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Your Password" required />
+            <input type="password" placeholder="Your Password" required name="password" />
           </div>
           <button class="submit-btn" type="submit">Login</button>
           <a href="./signup"><p>Don't you have an account?</p></a>

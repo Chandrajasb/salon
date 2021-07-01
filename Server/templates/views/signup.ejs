@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Salon</title>
-    <link rel="stylesheet" href="./../../Public/css/login.css" />
+    <link rel="stylesheet" href="css/login.css" />
     <script
       src="https://kit.fontawesome.com/154fa5a621.js"
       crossorigin="anonymous"
@@ -15,14 +15,14 @@
     <section class="background bg2">
       <div class="container con-right">
         <h1>Signup</h1>
-        <form class="form-div" action="">
+        <form class="form-div" action="/signup" method="POST">
           <div class="input-box">
             <i class="fas fa-user-alt"></i>
-            <input type="text" placeholder="Name" required />
+            <input type="text" placeholder="Name" required name="name" />
           </div>
           <div class="input-box">
             <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="Email Id" required />
+            <input type="email" placeholder="Email Id" required name="email" />
           </div>
           <div class="input-box">
             <i class="fas fa-phone-alt"></i>
@@ -32,15 +32,26 @@
               required
               pattern="[0-9]{10}"
               title="Mobile should not contain letters and more than 10 digits"
+              name="phone_no"
             />
           </div>
           <div class="input-box">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Your Password" required />
+            <input
+              type="password"
+              placeholder="Your Password"
+              required
+              name="password"
+            />
           </div>
           <div class="input-box">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Confirm your Password" required />
+            <input
+              type="password"
+              placeholder="Confirm your Password"
+              required
+              name="cpassword"
+            />
           </div>
           <button class="submit-btn" type="submit">Signup</button>
           <a href="./login"><p>Already have an account?</p></a>
