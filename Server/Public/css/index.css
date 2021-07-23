@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+.hero-sec {
+  min-height: 100vh;
+  background-image: url(./../assets/hero-bg.jpg);
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+
+  justify-content: flex-end;
+}
+.navbar-sec {
+  width: 100%;
+  background: rgba(231, 231, 231, 0.452);
+  box-shadow: 0px 0.5px 20px 5px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  position: fixed;
+}
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 9vw;
+  padding: 3vh 0;
+}
+.nav-items {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+}
+.nav-items a {
+  margin: 1vh 1vw;
+  text-decoration: none;
+  color: black;
+}
+.nav-link:hover {
+  text-decoration: underline;
+  color: #f26967;
+}
+.nav-logo {
+  align-self: center;
+  margin-right: 10vw;
+}
+.nav-logo h1 {
+  font-size: 4vh;
+}
+.nav-button {
+  align-self: center;
+}
+.nav-button button {
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-weight: 500;
+  background-color: #edbe4d;
+  -webkit-box-shadow: 0px 3px 3px 1px rgba(32, 30, 30, 0.15);
+  box-shadow: 0px 3px 3px 1px rgba(32, 30, 30, 0.15);
+  cursor: pointer;
+}
+.nav-button button:hover {
+  background-color: #f2cf7b;
+}
+.hero-container {
+  align-self: center;
+  margin: 0 9vw;
+}
+.hero-text {
+  text-align: center;
+  color: #fff;
+}
+.hero-text {
+  font-size: 6vh;
+}
+.sec2 {
+  min-height: 80vh;
+  padding: 10vh 9vw;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.sec2 h1 {
+  margin-top: 5vh;
+}
+.card-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+  margin-top: 20vh;
+}
+.card {
+  max-width: 240px;
+  padding: 20px;
+
+  margin: 0 20px;
+}
+.card-img {
+  width: 50%;
+  height: auto;
+}
+.card h3 {
+  margin-top: 4vh;
+}
+.card p {
+  margin-top: 2vh;
+}
