@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.background {
+  background-image: url("./../assets/loginbg.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.bg2 {
+  background-image: url("./../assets/signupbg.jpg");
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.container {
+  min-height: 100vh;
+  width: 30%;
+  background: rgba(248, 248, 248, 0.64);
+  -webkit-box-shadow: 0px 0.5px 20px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 0.5px 20px 5px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+
+.container h1 {
+  font-size: 32px;
+}
+
+.con-right {
+  float: center;
+}
+
+.form-div {
+  margin: 4vh;
+  width: 60%;
+}
+
+.form-div a {
+  text-decoration: none;
+}
+
+.form-div p {
+  font-weight: 200;
+  text-align: center;
+  margin-top: 2vh;
+  cursor: pointer;
+  font-size: 14px;
+  color: #000;
+}
+
+.form-div p:hover {
+  text-decoration: underline;
+  color: #F26967;
+}
+
+.input-box {
+  display: block;
+  -webkit-box-shadow: 0px 3px 4px 1px rgba(32, 30, 30, 0.15);
+          box-shadow: 0px 3px 4px 1px rgba(32, 30, 30, 0.15);
+  margin: 3vh 0;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 15px 15px;
+  border-radius: 5px;
+}
+
+.input-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding-left: 15px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px 15px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  background-color: #F2CF7B;
+  -webkit-box-shadow: 0px 3px 3px 1px rgba(32, 30, 30, 0.15);
+          box-shadow: 0px 3px 3px 1px rgba(32, 30, 30, 0.15);
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #edbe4d;
+}
+/*# sourceMappingURL=login.css.map */
