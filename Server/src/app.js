@@ -64,12 +64,12 @@ app.get('/appointment', Authenticate, async (req, res) => {
         console.log(err);
     }
 })
-app.post('/appointment', async (req, res) => {
-    const { name, phone, date, time, address } = req.body;
+app.post('/bookappointment', async (req, res) => {
+    const { name, phone, date, time,service, address } = req.body;
     try {
-        const appointment = new Appointment({ name, phone, date, time, address });
+        const appointment = new Appointment({ name, phone, date, time,service, address });
         await appointment.save();
-        res.status(201).render('appointment');
+        res.status(201).render('index');
 
     } catch (err) {
         console.log(err);

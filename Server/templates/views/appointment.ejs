@@ -9,14 +9,18 @@
 </head>
 
 <body>
-    <form action="/appointment" method="POST">
-        <!-- <h1>
-            <%= profile.name %>
-        </h1> -->
-        <input name="name" type="text" placeholder="Name" required />
-        <input name="phone" type="tel" placeholder="Phone No" required />
+    <form action="/bookappointment" method="POST">
+        <input name="name" type="text" placeholder="Name" value=<%=profile.name %> required />
+        <input name="phone" type="tel" placeholder="Phone No" value=<%=profile.phone_no %> required />
         <input name="date" type="date" placeholder="Date" required />
         <input name="time" type="time" placeholder="Time" required />
+        <label for="service">Choose a car:</label>
+        <select name="service" id="service" multiple>
+            <option value="service1">Service1</option>
+            <option value="service2">Service2</option>
+            <option value="service3">Service3</option>
+            <option value="service4">Service4</option>
+        </select>
         <textarea name="address" id="" cols="30" rows="10"></textarea>
         <button type="submit">schedule</button>
     </form>
