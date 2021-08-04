@@ -5,24 +5,28 @@ const appointmentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  phone_no: {
+  phone: {
     type: String,
     required: true,
   },
-  time: {
-    type: Timestamp,
+  date: {
+    type: Date,
     required: true,
   },
-  services: [
-    {
-      service: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
+  time: {
+    type: String,
+    required: true,
+  },
+  service: {
+    type: Array,
+    required: true,
+  },
+  address: {
+    type: String,
+    required: true,
+  }
 });
 
-const appointment = mongoose.model("appointment", appointmentSchema);
+const Appointment = mongoose.model("APPOINTMENT", appointmentSchema);
 
-module.exports = appointmentSchema;
+module.exports = Appointment;
