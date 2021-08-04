@@ -66,12 +66,45 @@
         <p>Shedule your Appointment at</p>
         <div>
           <button>Dorestep</button>
-          <button>Owr Salon</button>
+          <button>Salon</button>
         </div>
       </div>
     </section>
   </body>
 </html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+  <script>
+    var slider = tns({
+      container: ".slider",
+      items: 1,
+      gutter: 50,
+      autoplay: true,
+      mouseDrag: true,
+      loop: true,
+      rewind: false,
+      autoplayTimeout: 1000,
+      speed: 4000,
+      nav: false,
+      fixedWidth: 280,
+      controls: false,
+      edgePadding: 15,
+      autoplayButtonOutput: false,
+      autoWidth: false,
+      preventActionWhenRunning: true,
+
+      responsive: {
+        640: {
+          items: 2,
+        },
+        700: {
+          items: 2,
+        },
+        900: {
+          items: 2,
+        },
+      },
+    });
+  </script>
 
 <a href="./login"><button>Login</button></a>
 <a href="./signup"><button>Signup</button></a>
