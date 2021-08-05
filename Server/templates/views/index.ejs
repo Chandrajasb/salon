@@ -7,6 +7,10 @@
     <title>Salon</title>
 
     <link rel="stylesheet" href="css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css"
+    />
   </head>
   <body>
     <nav class="navbar-sec">
@@ -66,45 +70,74 @@
         <p>Shedule your Appointment at</p>
         <div>
           <a href="/appointment"><button>Dorestep</button></a>
-          <button> Salon</button>
+          <button>Salon</button>
         </div>
       </div>
     </section>
+    <section class="sec4">
+      <h1>Services</h1>
+      <div class="slider">
+        <div class="slider-item card-color">
+          <h1>Men's Hair style</h1>
+          <p>Schedule now &#8594 </p>
+        </div>
+        <div class="slider-item card-color">
+          <h1>Women's Hair style</h1>
+          <p>Schedule now &#8594 </p>
+        </div>
+        <div class="slider-item card-color">
+          <h1>Men's Hair style</h1>
+          <p>Schedule now &#8594 </p>
+        </div>
+        <div class="slider-item card-color">
+          <h1>Men's Hair style</h1>
+          <p>Schedule now &#8594 </p>
+        </div>
+        <div class="slider-item card-color">
+          <h1>Men's Hair style</h1>
+          <p>Schedule now &#8594 </p>
+        </div>
+        
+      </div>
+    </section>
+    <footer>
+      
+    </footer>
   </body>
 </html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
-  <script>
-    var slider = tns({
-      container: ".slider",
-      items: 1,
-      gutter: 50,
-      autoplay: true,
-      mouseDrag: true,
-      loop: true,
-      rewind: false,
-      autoplayTimeout: 1000,
-      speed: 4000,
-      nav: false,
-      fixedWidth: 280,
-      controls: false,
-      edgePadding: 15,
-      autoplayButtonOutput: false,
-      autoWidth: false,
-      preventActionWhenRunning: true,
+<script>
+  var slider = tns({
+    container: ".slider",
+    items: 1,
+    
+    autoplay: true,
+    mouseDrag: true,
+    loop: true,
+    "rewind": true,
+    autoplayTimeout: 1000,
+    speed: 4000,
+    nav: false,
+    // fixedWidth: 280,
+    controls: false,
+    edgePadding: 15,
+    autoplayButtonOutput: false,
+    autoWidth: false,
+    preventActionWhenRunning: true,
 
-      responsive: {
-        640: {
-          items: 2,
-        },
-        700: {
-          items: 2,
-        },
-        900: {
-          items: 2,
-        },
+    responsive: {
+      640: {
+        items: 2,
       },
-    });
-  </script>
+      700: {
+        items: 2,
+      },
+      900: {
+        items: 2,
+      },
+    },
+  });
+</script>
 
 <a href="./login"><button>Login</button></a>
 <a href="./signup"><button>Signup</button></a>
