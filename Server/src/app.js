@@ -15,7 +15,7 @@ const Authenticate = require('./middleware/authenticate');
 const Appointment = require('./models/appointmentSchema');
 
 app.use(express.json());
-app.use(cookieParser());
+app.use(cookieParser()); 
 app.use(express.urlencoded({ extend: false }));
 
 app.set('view engine', 'ejs');
@@ -77,7 +77,7 @@ app.post('/bookappointment', async (req, res) => {
 })
 
 app.post('/signup', async (req, res) => {
-    const { name, phone_no, email, password, cpassword } = req.body;
+    const { name, phone_no, email,gender, password, cpassword } = req.body;
     try {
         const userExist = await User.findOne({ email: email });
         if (userExist) {
@@ -85,7 +85,7 @@ app.post('/signup', async (req, res) => {
         } else if (password != cpassword) {
             return res.status(422).json({ Error: "Passwords are not matching " });
         } else {
-            const regUser = new User({ name, phone_no, email, password });
+            const regUser = new User({ name, phone_no, email,gender, password });
             await regUser.save();
             res.status(201).render('login');
         }
