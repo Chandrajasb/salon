@@ -16,6 +16,9 @@
 .he-hero-sec {
   background-image: url(./../assets/he-hero-bg.jpg);
 }
+.she-hero-sec {
+  background-image: url(./../assets/she-hero-bg.jpg);
+}
 .navbar-sec {
   width: 100%;
   background: rgba(231, 231, 231, 0.452);
