@@ -20,6 +20,9 @@
   -ms-flex-pack: end;
   justify-content: flex-end;
 }
+.bg3 {
+  background-image: url("./../assets/bg22.jpg");
+}
 .bg-centered {
   display: flex;
   align-items: center;
@@ -191,20 +194,16 @@
   background: white;
 }
 
-.app-form
-{
-  padding:8vh 5vw;
+.app-form {
+  padding: 8vh 5vw;
   display: flex;
   flex-direction: column;
 }
-.multi-box
-{
+.multi-box {
   margin: 0.5vh 0;
 }
-.txt-thin
-{
+.txt-thin {
   font-weight: 400;
   font-size: 12px;
-  
 }
 /*# sourceMappingURL=login.css.map */

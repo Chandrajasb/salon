@@ -37,6 +37,9 @@ app.get("/signup", (req, res) => {
 app.get("/contactus", (req, res) => {
   res.render("contactus");
 });
+app.get("/aboutus", (req, res) => {
+  res.render("aboutus");
+});
 
 app.get("/heuser", Authenticate, (req, res) => {
   res.render("heuser", { name: "name" });
