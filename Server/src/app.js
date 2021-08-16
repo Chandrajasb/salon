@@ -13,6 +13,7 @@ const static_path = path.join(__dirname, "../public");
 const User = require("./models/userSchema");
 const Authenticate = require("./middleware/authenticate");
 const Appointment = require("./models/appointmentSchema");
+const Service = require("./models/serviceSchema");
 
 app.use(express.json());
 app.use(cookieParser());
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extend: false }));
 
 app.set("view engine", "ejs");
 app.use(express.static(static_path));
+app.use(require("./routers/admin"));
 console.log(static_path);
 
 app.set("views", template_path);
@@ -33,7 +35,7 @@ app.get("/signup", (req, res) => {
 });
 
 app.get("/heuser", Authenticate, (req, res) => {
-  res.render("heuser",{name:"name"});
+  res.render("heuser", { name: "name" });
 });
 
 app.get("/login", (req, res) => {
@@ -55,25 +57,35 @@ app.get("/dapp", async (req, res) => {
 
 app.get("/appointment", Authenticate, async (req, res) => {
   try {
-    const phone_no = req.rootUser.phone_no;
-    const user = await User.find({ phone_no: phone_no });
-    if (!user) {
-      throw new Error("User not found");
+    const gender = req.rootUser.gender;
+    const services = await Service.find({ gender: gender });
+    if (!services) {
+      throw new Error("Services not found");
     }
-    req.user = user;
-    console.log(user);
-    res.render("appointment", { profile: req.rootUser });
+    console.log(services);
+    res.render("appointment", { profile: req.rootUser, services: services });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);
   }
 });
-app.post("/bookappointment", async (req, res) => {
-  const { name, phone, date, time, service, address } = req.body;
+
+app.post("/bookappointment", Authenticate, async (req, res) => {
+  const gender = req.rootUser.gender;
+  const { name, phone, date, time, service } = req.body;
+  const addresss = req.body.address
+  let address;
+  if (addresss === "") {
+    address = "salon"
+  }
+  else {
+    address = req.body.address
+  }
   try {
     const appointment = new Appointment({
       name,
       phone,
+      gender,
       date,
       time,
       service,
