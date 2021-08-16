@@ -73,13 +73,12 @@ app.get("/appointment", Authenticate, async (req, res) => {
 app.post("/bookappointment", Authenticate, async (req, res) => {
   const gender = req.rootUser.gender;
   const { name, phone, date, time, service } = req.body;
-  const addresss = req.body.address
+  const addresss = req.body.address;
   let address;
   if (addresss === "") {
-    address = "salon"
-  }
-  else {
-    address = req.body.address
+    address = "salon";
+  } else {
+    address = req.body.address;
   }
   try {
     const appointment = new Appointment({
@@ -138,7 +137,7 @@ app.post("/login", async (req, res) => {
         if (userLogin.gender == "male")
           return res.status(201).render("heuser", { name: userLogin.name });
         if (userLogin.gender == "female")
-          return res.status(201).render("index");
+          return res.status(201).render("sheuser", { name: userLogin.name });
       }
     } else {
       return res.status(400).json({ error: "Invalid Credentials!" });
@@ -146,6 +145,34 @@ app.post("/login", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+});
+
+app.get("/Services", async (req, res) => {
+  try {
+    const maleServices = await Service.find({ gender: "male" });
+    if (!maleServices) {
+      throw new Error("MaleServices not found");
+    }
+    const femaleServices = await Service.find({ gender: "female" });
+    if (!femaleServices) {
+      throw new Error("FemaleServices not found");
+    }
+    console.log(maleServices);
+    console.log(femaleServices);
+    res.render("Services");
+  } catch (err) {
+    res.status(401).send("Unauthorized:No token provided");
+    console.log(err);
+  }
+});
+
+//Logout User
+//----------------
+app.get("/logout", (req, res) => {
+  console.log("Hello from Logout");
+  res.clearCookie("jwtoken");
+  // res.status(200).send("Logout User");
+  res.redirect("/");
 });
 
 app.listen(PORT, () => {

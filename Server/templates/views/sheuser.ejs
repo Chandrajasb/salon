@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Salon</title>
-    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="/css/index.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css"
@@ -28,10 +28,23 @@
           <h1>Salon</h1>
         </div>
         <div class="nav-button">
-          <a href="./appointment"><button>Shedule Appointment</button></a>
+          <button id="myBtn">Shedule Appointment</button>
         </div>
       </div>
     </nav>
+
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1>Shedule Appointment at</h1>
+        <div style="margin-top: 5vh">
+          <a href="./appointment"><button class="btn-nav">Doarstep</button></a>
+          <a href="./appointment"><button class="btn-nav">salon</button></a>
+        </div>
+      </div>
+    </div>
+
     <section class="hero-sec she-hero-sec">
       <div class="hero-container">
         <div class="hero-text">
@@ -92,3 +105,25 @@
     </footer>
   </body>
 </html>
+
+<script>
+  var modal = document.getElementById("myModal");
+
+  var btn = document.getElementById("myBtn");
+
+  var span = document.getElementsByClassName("close")[0];
+
+  btn.onclick = function () {
+    modal.style.display = "block";
+  };
+
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+</script>

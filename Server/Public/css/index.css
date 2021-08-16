@@ -254,3 +254,59 @@
   height: 299px;
   width: 438px;
 }
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-nav {
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-weight: 500;
+  background-color: #edbe4d;
+  -webkit-box-shadow: 0px 3px 3px 1px rgba(32, 30, 30, 0.15);
+  box-shadow: 0px 3px 3px 1px rgba(32, 30, 30, 0.15);
+  cursor: pointer;
+}
+.btn-nav:hover {
+  background-color: #f2cf7b;
+}

@@ -1,0 +1,21 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.recent-body {
+  padding: 15vh 20vh;
+}
+.recent-card {
+  -webkit-box-shadow: 0px 3px 4px 1px rgba(32, 30, 30, 0.15);
+  box-shadow: 0px 3px 4px 1px rgba(32, 30, 30, 0.15);
+  min-width: 80%;
+  margin: 2vh 0;
+  padding: 2vh 7vw;
+}
+.mb-1 {
+  margin-bottom: 2vh;
+}
+.mb-2vh {
+  margin-bottom: 3vh;
+}

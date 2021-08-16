@@ -1,17 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
 
-<body>
-    <h1>
-        <%= dapp %>
-    </h1>
-</body>
+    <link rel="stylesheet" href="/css/recent.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+  </head>
 
+  <body>
+    <nav class="navbar-sec">
+      <div class="navbar">
+        <div class="nav-items">
+          <a class="nav-link" href="#">Services</a>
+          <a class="nav-link" href="/dapp">Recent</a>
+          <a class="nav-link" href="./logout">logout</a>
+        </div>
+        <div class="nav-logo">
+          <h1>Salon</h1>
+        </div>
+        <div class="nav-button">
+          <button id="myBtn">Shedule Appointment</button>
+        </div>
+      </div>
+    </nav>
+
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1>Shedule Appointment at</h1>
+        <div style="margin-top: 5vh">
+          <a href="./appointment"><button class="btn-nav">Doarstep</button></a>
+          <a href="./appointment"><button class="btn-nav">salon</button></a>
+        </div>
+      </div>
+    </div>
+
+    <section class="recent-body">
+      <% if(dapp.length!=0){ var i=1; dapp.forEach(function(dapp){ %>
+
+      <div class="recent-card">
+        <p class="mb-1">ID: <%= dapp._id %></p>
+        <h4>Date: <%= dapp.date%></h4>
+        <h4 class="mb-2">Time: <%= dapp.time%></h4>
+        <h1 class="mb-1">At: Doarstep</h1>
+        <h3>Services selected:</h3>
+
+        <p><%= dapp.service %></p>
+      </div>
+      <% i++; }) %> <% } %>
+    </section>
+
+    <!-- <h1><%= dapp %></h1> -->
+  </body>
+
+  <script src="/js/model.js"></script>
 </html>
