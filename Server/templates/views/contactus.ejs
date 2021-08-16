@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>salon</title>
+    <link rel="stylesheet" href="css/login.css" />
+    <script
+      src="https://kit.fontawesome.com/154fa5a621.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <section class="background bg-centered">
+      <div class="container container-centered">
+        <form class="app-form" action="" method="POST">
+          <h1 style="text-align: center">Contact us</h1>
+          <div class="input-box">
+            <i class="fas fa-user-alt"></i>
+            <input type="text" name="name" placeholder="Name" required />
+          </div>
+          <div class="input-box">
+            <i class="fas fa-envelope"></i>
+            <input type="email" placeholder="Email Id" name="email" required />
+          </div>
+
+          <label for="service">Your Message</label>
+          <textarea
+            class="input-box multi-box"
+            name="address"
+            id=""
+            cols="20"
+            rows="5"
+            style="margin-bottom: 1.5vh"
+          ></textarea>
+          <button class="submit-btn" type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>
