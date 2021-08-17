@@ -6,6 +6,8 @@ const Service = require("../models/serviceSchema");
 adminRouter.use(express.json());
 const adminAuthenticate = require("../middleware/adminAuthenticate");
 const Appointment = require("../models/appointmentSchema");
+const AppointmentSalon = require("../models/appointmentSalonSchema");
+const Contact = require("../models/contactSchema");
 
 adminRouter.get("/adminLogin", (req, res) => {
   res.render("adminLogin");
@@ -41,18 +43,36 @@ adminRouter.get("/adminpage", adminAuthenticate, async (req, res) => {
     if (!appointmentsFemale) {
       throw new Error("Appointments not found");
     }
+    const appointmentsSalon = await AppointmentSalon.find();
+    if (!appointmentsSalon) {
+      throw new Error("Appointments not found");
+    }
+    const appointmentsMaleSalon = await AppointmentSalon.find({ gender: "male" });
+    if (!appointmentsMaleSalon) {
+      throw new Error("Appointments not found");
+    }
+    const appointmentsFemaleSalon = await AppointmentSalon.find({ gender: "female" });
+    if (!appointmentsFemaleSalon) {
+      throw new Error("Appointments not found");
+    }
     const ServicesCount = Services.length;
     const maleServicesCount = maleServices.length;
     const femaleServicesCount = femaleServices.length;
     const appointmentsCount = appointments.length;
     const appointmentsMaleCount = appointmentsMale.length;
     const appointmentsFemaleCount = appointmentsFemale.length;
+    const appointmentsSalonCount = appointmentsSalon.length;
+    const appointmentsMaleSalonCount = appointmentsMaleSalon.length;
+    const appointmentsFemaleSalonCount = appointmentsFemaleSalon.length;
     console.log(ServicesCount);
     console.log(maleServicesCount);
     console.log(femaleServicesCount);
     console.log(appointmentsCount);
     console.log(appointmentsMaleCount);
     console.log(appointmentsFemaleCount);
+    console.log(appointmentsSalonCount);
+    console.log(appointmentsMaleSalonCount);
+    console.log(appointmentsFemaleSalonCount);
     res.render("adminpage", {
       maleServicesCount: maleServicesCount,
       femaleServicesCount: femaleServicesCount,
@@ -110,15 +130,60 @@ adminRouter.get("/admin/appointment", adminAuthenticate, async (req, res) => {
     if (!appointmentsFemale) {
       throw new Error("Appointments not found");
     }
+    const appointmentsMaleSalon = await AppointmentSalon.find({ gender: "male" });
+    if (!appointmentsMaleSalon) {
+      throw new Error("Appointments not found");
+    }
+    const appointmentsFemaleSalon = await AppointmentSalon.find({ gender: "female" });
+    if (!appointmentsFemaleSalon) {
+      throw new Error("Appointments not found");
+    }
     console.log(appointmentsMale);
     console.log(appointmentsFemale);
-    // res.render("appointment", { blog: appointment });
+    console.log(appointmentsMaleSalon);
+    console.log(appointmentsFemaleSalon);
+    // res.render("appointment", { service: appointment });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);
   }
 });
-
+adminRouter.get("/feedbacks", adminAuthenticate, async (req, res) => {
+  try {
+    const feebacks = await Contact.find();
+    if (!feebacks) {
+      throw new Error("Feebacks not found");
+    }
+    console.log(feebacks);
+  } catch (err) {
+    res.status(401).send("Unauthorized:No token provided");
+    console.log(err);
+  }
+});
+//Edit Service
+adminRouter.put("/editService/:id", adminAuthenticate, async (req, res) => {
+  try {
+    const _id = req.params.id;
+    const service = await Service.findByIdAndUpdate(_id, req.body, {
+      new: true,
+    });
+    res.redirect("/myservices");
+    console.log(service);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+//Delete Service
+adminRouter.delete("/deleteService/:id", adminAuthenticate, async (req, res) => {
+  try {
+    const _id = req.params.id;
+    const service = await Service.findByIdAndDelete(_id);
+    res.redirect("/myservices");
+    console.log(service);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 adminRouter.post("/adminlogin", async (req, res) => {
   try {
     const { email, password } = req.body;
