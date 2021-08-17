@@ -14,6 +14,8 @@ const User = require("./models/userSchema");
 const Authenticate = require("./middleware/authenticate");
 const Appointment = require("./models/appointmentSchema");
 const Service = require("./models/serviceSchema");
+const AppointmentSalon = require("./models/appointmentSalonSchema");
+const Contact = require("./models/contactSchema");
 
 app.use(express.json());
 app.use(cookieParser());
@@ -48,14 +50,20 @@ app.get("/heuser", Authenticate, (req, res) => {
 app.get("/login", (req, res) => {
   res.render("login");
 });
-app.get("/dapp", async (req, res) => {
+app.get("/dapp", Authenticate, async (req, res) => {
+  const phone = req.rootUser.phone_no;
   try {
-    const appointments = await Appointment.find();
-    console.log(appointments);
+    const appointments = await Appointment.find({ phone: phone });
     if (!appointments) {
       throw new Error("User not found");
     }
-    res.render("dapp", { dapp: appointments });
+    console.log(appointments);
+    const appointmentsSalon = await AppointmentSalon.find({ phone: phone });
+    if (!appointmentsSalon) {
+      throw new Error("User not found");
+    }
+    console.log(appointmentsSalon);
+    res.render("dapp", { dapp: appointments, dapp2: appointmentsSalon });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);
@@ -76,17 +84,24 @@ app.get("/appointment", Authenticate, async (req, res) => {
     console.log(err);
   }
 });
+app.get("/appointmentSalon", Authenticate, async (req, res) => {
+  try {
+    const gender = req.rootUser.gender;
+    const services = await Service.find({ gender: gender });
+    if (!services) {
+      throw new Error("Services not found");
+    }
+    console.log(services);
+    res.render("appointmentSalon", { profile: req.rootUser, services: services });
+  } catch (err) {
+    res.status(401).send("Unauthorized:No token provided");
+    console.log(err);
+  }
+});
 
 app.post("/bookappointment", Authenticate, async (req, res) => {
   const gender = req.rootUser.gender;
-  const { name, phone, date, time, service } = req.body;
-  const addresss = req.body.address;
-  let address;
-  if (addresss === "") {
-    address = "salon";
-  } else {
-    address = req.body.address;
-  }
+  const { name, phone, date, time, service, address } = req.body;
   try {
     const appointment = new Appointment({
       name,
@@ -96,6 +111,24 @@ app.post("/bookappointment", Authenticate, async (req, res) => {
       time,
       service,
       address,
+    });
+    await appointment.save();
+    res.status(201).render("index");
+  } catch (err) {
+    console.log(err);
+  }
+});
+app.post("/bookappointmentSalon", Authenticate, async (req, res) => {
+  const gender = req.rootUser.gender;
+  const { name, phone, date, time, service } = req.body;
+  try {
+    const appointment = new AppointmentSalon({
+      name,
+      phone,
+      gender,
+      date,
+      time,
+      service,
     });
     await appointment.save();
     res.status(201).render("index");
@@ -154,25 +187,30 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get("/Services", async (req, res) => {
+app.get("/user/services", Authenticate, async (req, res) => {
   try {
-    const maleServices = await Service.find({ gender: "male" });
-    if (!maleServices) {
-      throw new Error("MaleServices not found");
+    const gender = req.rootUser.gender;
+    const Services = await Service.find({ gender: gender });
+    if (!Services) {
+      throw new Error("Services not found");
     }
-    const femaleServices = await Service.find({ gender: "female" });
-    if (!femaleServices) {
-      throw new Error("FemaleServices not found");
-    }
-    console.log(maleServices);
-    console.log(femaleServices);
-    res.render("Services");
+    console.log(Services);
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);
   }
 });
-
+//contactus Route
+app.post("/contactus", async (req, res) => {
+  const { name, email, message } = req.body;
+  try {
+    const contact = new Contact({ name, email, message });
+    await contact.save();
+    res.redirect("/contactus");
+  } catch (err) {
+    console.log(err);
+  }
+});
 //Logout User
 //----------------
 app.get("/logout", (req, res) => {
