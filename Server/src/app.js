@@ -166,7 +166,10 @@ app.get("/Services", async (req, res) => {
     }
     console.log(maleServices);
     console.log(femaleServices);
-    res.render("Services");
+    res.render("listservices", {
+      maleServices: maleServices,
+      femaleServices: femaleServices,
+    });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);

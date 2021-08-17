@@ -63,7 +63,7 @@ adminRouter.get("/adminpage", adminAuthenticate, async (req, res) => {
   }
 });
 
-adminRouter.get("/Services", adminAuthenticate, async (req, res) => {
+adminRouter.get("/listServices", adminAuthenticate, async (req, res) => {
   try {
     const maleServices = await Service.find({ gender: "male" });
     if (!maleServices) {
@@ -75,7 +75,10 @@ adminRouter.get("/Services", adminAuthenticate, async (req, res) => {
     }
     console.log(maleServices);
     console.log(femaleServices);
-    res.render("addServices");
+    res.render("admin-listservice", {
+      maleServices: maleServices,
+      femaleServices: femaleServices,
+    });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);

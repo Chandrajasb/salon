@@ -19,17 +19,15 @@
       <div class="navbar">
         <div class="nav-items">
           <!-- <a class="nav-link" href="/adminpage">home</a> -->
-          <a class="nav-link" href="/">Home</a>
-          <a class="nav-link" href="/services">Services</a>
-          <a class="nav-link" href="/contactus">contactus</a>
+          <a class="nav-link" href="/listservices">Services</a>
+          <a class="nav-link" href="">users</a>
+          <a class="nav-link" href="">appointment</a>
         </div>
         <div class="nav-logo">
           <h1>Salon</h1>
         </div>
         <div class="nav-button">
-          <a href="/appointment"
-            ><button id="myBtn">Shedule Appointment</button></a
-          >
+          <a href="/addservice"><button id="myBtn">Add services</button></a>
         </div>
       </div>
     </nav>
@@ -39,12 +37,17 @@
       <div class="service-card-div">
         <% if(femaleServices.length!=0){ var i=1;
         femaleServices.forEach(function(femaleServices){ %>
-        <div
-          class="service-card card-color scard"
-          style="justify-content: center; max-height: 2vh;min-width: 10vw;"
-        >
+        <div class="service-card card-color">
           <h1><%= femaleServices.serviceName %></h1>
           <h4>cost:<%= femaleServices.cost %></h4>
+          <div>
+            <a href="/editService/<%= femaleServices._id %>"
+              ><button class="btn btn-edit">Edit</button></a
+            >
+            <a href="/deleteService/<%= femaleServices._id %>">
+              <button class="btn btn-delete">Delete</button></a
+            >
+          </div>
         </div>
         <% i++; }) %> <% } %>
       </div>
@@ -55,9 +58,17 @@
       <div class="service-card-div">
         <% if(maleServices.length!=0){ var i=1;
         maleServices.forEach(function(maleServices){ %>
-        <div class="service-card card-color scard">
+        <div class="service-card card-color">
           <h1><%= maleServices.serviceName %></h1>
           <h4>cost: <%= maleServices.cost %></h4>
+          <div>
+            <a href="/editService/<%= maleServices._id %>"
+              ><button class="btn btn-edit">Edit</button></a
+            >
+            <a href="/deleteService/<%= maleServices._id %>">
+              <button class="btn btn-delete">Delete</button></a
+            >
+          </div>
         </div>
         <% i++; }) %> <% } %>
       </div>

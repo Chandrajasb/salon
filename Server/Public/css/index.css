@@ -310,3 +310,7 @@
 .btn-nav:hover {
   background-color: #f2cf7b;
 }
+.scard {
+  justify-content: center;
+  max-width: 8vh;
+}
