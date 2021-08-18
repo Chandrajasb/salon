@@ -92,7 +92,10 @@ app.get("/appointmentSalon", Authenticate, async (req, res) => {
       throw new Error("Services not found");
     }
     console.log(services);
-    res.render("appointmentSalon", { profile: req.rootUser, services: services });
+    res.render("appointmentSalon", {
+      profile: req.rootUser,
+      services: services,
+    });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);
@@ -195,6 +198,9 @@ app.get("/user/services", Authenticate, async (req, res) => {
       throw new Error("Services not found");
     }
     console.log(Services);
+    return res
+      .status(201)
+      .render("userservices", { Services: Services, gender: gender });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);

@@ -8,13 +8,14 @@
 
     <link rel="stylesheet" href="/css/recent.css" />
     <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
   </head>
 
   <body>
     <nav class="navbar-sec">
       <div class="navbar">
         <div class="nav-items">
-          <a class="nav-link" href="/user/services">Services</a>
+          <a class="nav-link" href="#">Services</a>
           <a class="nav-link" href="/dapp">Recent</a>
           <a class="nav-link" href="./logout">logout</a>
         </div>
@@ -40,21 +41,17 @@
     </div>
 
     <section class="recent-body">
-      <% if(dapp.length!=0){ var i=1; dapp.forEach(function(dapp){ %>
-
-      <div class="recent-card">
-        <p class="mb-1">ID: <%= dapp._id %></p>
-        <h4>Date: <%= dapp.date%></h4>
-        <h4 class="mb-2">Time: <%= dapp.time%></h4>
-        <h1 class="mb-1">At: Doarstep</h1>
-        <h3>Services selected:</h3>
-
-        <p><%= dapp.service %></p>
+      <h1 style="text-align: center"><%= gender%> Services</h1>
+      <div class="service-card-div">
+        <% if(Services.length!=0){ var i=1; Services.forEach(function(Services){
+        %>
+        <div class="service-card card-color">
+          <h1><%= Services.serviceName %></h1>
+          <h4>cost: <%= Services.cost %></h4>
+        </div>
+        <% i++; }) %> <% } %>
       </div>
-      <% i++; }) %> <% } %>
     </section>
-
-    <!-- <h1><%= dapp %></h1> -->
   </body>
 
   <script src="/js/model.js"></script>
