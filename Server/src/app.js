@@ -116,7 +116,7 @@ app.post("/bookappointment", Authenticate, async (req, res) => {
       address,
     });
     await appointment.save();
-    res.status(201).render("index");
+    res.redirect("dapp");
   } catch (err) {
     console.log(err);
   }
@@ -134,7 +134,7 @@ app.post("/bookappointmentSalon", Authenticate, async (req, res) => {
       service,
     });
     await appointment.save();
-    res.status(201).render("index");
+    res.redirect("dapp");
   } catch (err) {
     console.log(err);
   }
@@ -212,7 +212,7 @@ app.post("/contactus", async (req, res) => {
   try {
     const contact = new Contact({ name, email, message });
     await contact.save();
-    res.redirect("/contactus");
+    res.redirect("/");
   } catch (err) {
     console.log(err);
   }

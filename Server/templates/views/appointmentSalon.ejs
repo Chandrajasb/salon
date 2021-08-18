@@ -16,10 +16,17 @@
     <section class="background bg-centered">
       <div class="container container-centered">
         <form class="app-form" action="/bookappointmentSalon" method="POST">
-          <h1 style="text-align: center;">Schedule at DoarStep</h1> 
+          <h1 style="text-align: center">Schedule at Salon</h1>
           <div class="input-box">
             <i class="fas fa-user-alt"></i>
-            <input type="text"  name="name" placeholder="Name" required value="<%= profile.name %>"   required/>
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              required
+              value="<%= profile.name %>"
+              required
+            />
           </div>
           <div class="input-box">
             <i class="fas fa-phone-alt"></i>
@@ -31,7 +38,7 @@
               title="Mobile should not contain letters and more than 10 digits"
               name="phone"
               value="<%= profile.phone_no%>"
-            required
+              required
             />
           </div>
           <div class="input-box">
@@ -42,18 +49,26 @@
             <!-- <i class="fas fa-user-alt"></i> -->
             <input name="time" type="time" placeholder="Time" required />
           </div>
-          
-          
-          
+
           <label for="service">Choose a Serice:</label>
-          <select class="input-box multi-box" name="service" id="service" multiple required>
-            
-            <option value="service1">Hair Style</option>
-            <option value="service2">Service2</option>
-            <option value="service3">Service3</option>
-            <option value="service4">Service4</option>
+          <select
+            class="input-box multi-box"
+            name="service"
+            id="service"
+            multiple
+            required
+          >
+            <% if(services.length!=0){ var i=1;
+            services.forEach(function(services){ %>
+            <option value="<%= services.serviceName %>">
+              <%= services.serviceName %>
+            </option>
+            <% i++; }) %> <% } %>
           </select>
-          <p class="txt-thin" style="margin-bottom:1.5vh">Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.</p>
+          <p class="txt-thin" style="margin-bottom: 1.5vh">
+            Hold down the Ctrl (windows) or Command (Mac) button to select
+            multiple options.
+          </p>
           <button class="submit-btn" type="submit">schedule</button>
         </form>
       </div>
