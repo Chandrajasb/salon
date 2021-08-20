@@ -188,6 +188,20 @@ adminRouter.get("/contactus", adminAuthenticate, async (req, res) => {
     console.log(err);
   }
 });
+
+adminRouter.get("/userlist", adminAuthenticate, async (req, res) => {
+  try {
+    const users = await users.find();
+    if (!users) {
+      throw new Error("User not found");
+    }
+    console.log(users);
+    res.render("admin-user", { users: users });
+  } catch (err) {
+    res.status(401).send("Unauthorized:No token provided");
+    console.log(err);
+  }
+});
 //Edit Service
 adminRouter.put("/editService/:id", adminAuthenticate, async (req, res) => {
   try {

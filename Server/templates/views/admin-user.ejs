@@ -19,7 +19,7 @@
         <div class="nav-items">
           <!-- <a class="nav-link" href="/adminpage">home</a> -->
           <a class="nav-link" href="/listServices">Services</a>
-          <a class="nav-link" href="/userlist">users</a>
+          
           <a class="nav-link" href="">appointment</a>
           <a class="nav-link" href="/addBeautician">beautician </a>
         </div>
@@ -31,8 +31,44 @@
         </div>
       </div>
     </nav>
-    <section class="">
-
+    <section class="list-Beautician-sec" style="margin:5vh auto">
+        <h1 >
+            Beautician's
+        </h1>
+    
+        <table>
+            <thead>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Gender</th>
+              
+    
+              
+              
+              
+              
+            </thead>
+            
+                <%
+               if(users.length!=0){
+               var i=1;
+               users.forEach(function(users){
+               %>
+               <tbody id="tbody">
+                   <tr>
+                <td><%=users.name %></td>
+                <td><%=users.phone_no %></td>
+                <td><%=users.email %></td>
+                <td><%=users.gender %></td>
+                
+            </tbody>
+    
+                <%  i++; }) %>
+                 <% } %>
+    
+        </table>
+    
     </section>
   </body>
 </html>
