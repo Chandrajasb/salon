@@ -16,6 +16,8 @@ const Appointment = require("./models/appointmentSchema");
 const Service = require("./models/serviceSchema");
 const AppointmentSalon = require("./models/appointmentSalonSchema");
 const Contact = require("./models/contactSchema");
+const methodOverride = require("method-override");
+app.use(methodOverride("_method"));
 
 app.use(express.json());
 app.use(cookieParser());
@@ -54,12 +56,12 @@ app.get("/login", (req, res) => {
 app.get("/dapp", Authenticate, async (req, res) => {
   const phone = req.rootUser.phone_no;
   try {
-    const appointments = await Appointment.find({ phone: phone });
+    const appointments = await Appointment.find({ phone: phone, feedback: "nofeedback" });
     if (!appointments) {
       throw new Error("User not found");
     }
     console.log(appointments);
-    const appointmentsSalon = await AppointmentSalon.find({ phone: phone });
+    const appointmentsSalon = await AppointmentSalon.find({ phone: phone, feedback: "nofeedback" });
     if (!appointmentsSalon) {
       throw new Error("User not found");
     }
@@ -70,6 +72,26 @@ app.get("/dapp", Authenticate, async (req, res) => {
     console.log(err);
   }
 });
+//Edit Appointment
+app.put("/sendFeedback/:id", Authenticate, async (req, res) => {
+  try {
+    const _id = req.params.id;
+    const appointment = await Appointment.findByIdAndUpdate(_id, req.body, {
+      new: true,
+    })
+    if (!appointment) {
+      const appointmentSalon = await AppointmentSalon.findByIdAndUpdate(_id, req.body, {
+        new: true,
+      });
+      console.log(appointmentSalon);
+    }
+    res.redirect("/dapp");
+    console.log(appointment);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 
 app.get("/appointment", Authenticate, async (req, res) => {
   try {
@@ -207,7 +229,7 @@ app.get("/user/services", Authenticate, async (req, res) => {
     console.log(err);
   }
 });
-app.get("/allservices",  async (req, res) => {
+app.get("/allservices", async (req, res) => {
   try {
     const Services = await Service.find();
     if (!Services) {
@@ -216,7 +238,7 @@ app.get("/allservices",  async (req, res) => {
     console.log(Services);
     return res
       .status(201)
-      .render("userservices", { Services: Services,});
+      .render("userservices", { Services: Services, });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);

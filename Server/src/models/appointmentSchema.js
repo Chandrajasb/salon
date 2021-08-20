@@ -36,6 +36,14 @@ const appointmentSchema = new mongoose.Schema({
   assign: {
     type: String,
     default: "notAssigned",
+  },
+  rate: {
+    type: Number,
+    default: 0,
+  },
+  feedback: {
+    type: String,
+    default: "nofeedback",
   }
 });
 
