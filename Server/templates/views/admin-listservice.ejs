@@ -1,79 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
 
-    <link rel="stylesheet" href="css/login.css" />
-    <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="css/admin.css" />
-    <script
-      src="https://kit.fontawesome.com/154fa5a621.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <nav class="navbar-sec">
-      <div class="navbar">
-        <div class="nav-items">
-          <!-- <a class="nav-link" href="/adminpage">home</a> -->
-          <a class="nav-link" href="/listservices">Services</a>
-          <a class="nav-link" href="">users</a>
-          <a class="nav-link" href="">appointment</a>
-        </div>
-        <div class="nav-logo">
-          <h1>Salon</h1>
-        </div>
-        <div class="nav-button">
-          <a href="/addservice"><button id="myBtn">Add services</button></a>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+
+  <link rel="stylesheet" href="css/login.css" />
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+  <script src="https://kit.fontawesome.com/154fa5a621.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <nav class="navbar-sec">
+    <div class="navbar">
+      <div class="nav-items">
+        <!-- <a class="nav-link" href="/adminpage">home</a> -->
+        <a class="nav-link" href="/listservices">Services</a>
+        <a class="nav-link" href="">users</a>
+        <a class="nav-link" href="">appointment</a>
       </div>
-    </nav>
+      <div class="nav-logo">
+        <h1>Salon</h1>
+      </div>
+      <div class="nav-button">
+        <a href="/addservice"><button id="myBtn">Add services</button></a>
+      </div>
+    </div>
+  </nav>
 
-    <section class="admin-body">
-      <h1 style="text-align: center">Female Services</h1>
-      <div class="service-card-div">
-        <% if(femaleServices.length!=0){ var i=1;
-        femaleServices.forEach(function(femaleServices){ %>
+  <section class="admin-body">
+    <h1 style="text-align: center">Female Services</h1>
+    <div class="service-card-div">
+      <% if(femaleServices.length!=0){ var i=1; femaleServices.forEach(function(femaleServices){ %>
         <div class="service-card card-color">
-          <h1><%= femaleServices.serviceName %></h1>
-          <h4>cost:<%= femaleServices.cost %></h4>
+          <h1>
+            <%= femaleServices.serviceName %>
+          </h1>
+          <h4>cost:<%= femaleServices.cost %>
+          </h4>
           <div>
-            <a href="/editService/<%= femaleServices._id %>"
-              ><button class="btn btn-edit">Edit</button></a
-            >
+            <a href="/editService/<%= femaleServices._id %>"><button class="btn btn-edit">Edit</button></a>
             <form action="/deleteService/<%= maleServices._id %>?_method=DELETE" method="POST">
-            
-              <button type="submit" class="btn btn-delete">Delete</button>
-            </form>
-          </div>
-        </div>
-        <% i++; }) %> <% } %>
-      </div>
-    </section>
 
-    <section class="admin-body">
-      <h1 style="text-align: center">Male Services</h1>
-      <div class="service-card-div">
-        <% if(maleServices.length!=0){ var i=1;
-        maleServices.forEach(function(maleServices){ %>
-        <div class="service-card card-color">
-          <h1><%= maleServices.serviceName %></h1>
-          <h4>cost: <%= maleServices.cost %></h4>
-          <div>
-            <a href="./editService/<%= maleServices._id %>"
-              ><button class="btn btn-edit">Edit</button></a
-            >
-            <form action="./deleteService/<%= maleServices._id %>?_method=DELETE" method="POST">
-            
               <button type="submit" class="btn btn-delete">Delete</button>
             </form>
           </div>
         </div>
-        <% i++; }) %> <% } %>
-      </div>
-    </section>
-  </body>
+        <% i++; }) %>
+          <% } %>
+    </div>
+  </section>
+
+  <section class="admin-body">
+    <h1 style="text-align: center">Male Services</h1>
+    <div class="service-card-div">
+      <% if(maleServices.length!=0){ var i=1; maleServices.forEach(function(maleServices){ %>
+        <div class="service-card card-color">
+          <h1>
+            <%= maleServices.serviceName %>
+          </h1>
+          <h4>cost: <%= maleServices.cost %>
+          </h4>
+          <div>
+            <a href=""><button class="btn btn-edit">Edit</button></a>
+            <form action="./editService/<%= maleServices._id %>?_method=PUT" method="POST">
+              <input class="" value="<%= maleServices.serviceName %>" name="serviceName" type="text"
+                placeholder="Service Name" required />
+              <input class="" value="<%= maleServices.cost %>" name="cost" type="text" placeholder="Cost" required />
+              <button type="submit" class="btn btn-edit">update</button>
+            </form>
+            <form action="./deleteService/<%= maleServices._id %>?_method=DELETE" method="POST">
+
+              <button type="submit" class="btn btn-delete">Delete</button>
+            </form>
+          </div>
+        </div>
+        <% i++; }) %>
+          <% } %>
+    </div>
+  </section>
+</body>
+
 </html>

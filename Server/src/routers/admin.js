@@ -8,6 +8,8 @@ const adminAuthenticate = require("../middleware/adminAuthenticate");
 const Appointment = require("../models/appointmentSchema");
 const AppointmentSalon = require("../models/appointmentSalonSchema");
 const Contact = require("../models/contactSchema");
+const methodOverride = require("method-override");
+adminRouter.use(methodOverride("_method"));
 
 adminRouter.get("/adminLogin", (req, res) => {
   res.render("adminLogin");
@@ -148,7 +150,7 @@ adminRouter.get("/admin/appointment", adminAuthenticate, async (req, res) => {
     console.log(err);
   }
 });
-adminRouter.get("/contactus", adminAuthenticate, async (req, res) => {
+adminRouter.get("/feedbacks", adminAuthenticate, async (req, res) => {
   try {
     const feebacks = await Contact.find();
     if (!feebacks) {
@@ -167,7 +169,7 @@ adminRouter.put("/editService/:id", adminAuthenticate, async (req, res) => {
     const service = await Service.findByIdAndUpdate(_id, req.body, {
       new: true,
     });
-    res.redirect("/myservices");
+    res.redirect("/listServices");
     console.log(service);
   } catch (err) {
     res.status(500).send(err);
@@ -178,7 +180,7 @@ adminRouter.delete("/deleteService/:id", adminAuthenticate, async (req, res) => 
   try {
     const _id = req.params.id;
     const service = await Service.findByIdAndDelete(_id);
-    res.redirect("/myservices");
+    res.redirect("/listServices");
     console.log(service);
   } catch (err) {
     res.status(500).send(err);
