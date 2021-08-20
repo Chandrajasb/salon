@@ -52,7 +52,7 @@
         <h3>Services selected:</h3>
 
         <p><%= dapp.service %></p>
-
+        <% if(dapp.status === "completed"){ %>
         <h3>Rate your service:</h3>
           <div>
          <form class="feedback-form" action="/sendFeedback/<%= dapp._id %>?_method=PUT" method="post">
@@ -73,9 +73,11 @@
         cols="50"
         rows="3"
         placeholder="your feedback"></textarea>
+        <input type="text" value="completed and feedback recived" name="status" style="display:none">
         <button class="feedback-btn" type="submit">send</button>
       </form> 
            </div>
+           <% }  %>
 
       </div>
       <% i++; }) %> <% } %> 
@@ -91,9 +93,9 @@
         <h1 class="mb-1">At: Salon</h1>
         <h3>Services selected:</h3>
 
-        <p><%= dapp.service %></p>
+        <p><%= dapp2.service %></p>
 
-
+        <% if(dapp2.status === "completed"){ %>
         <h3>Rate your service:</h3>
         <div>
        <form class="feedback-form" action="/sendFeedback/<%= dapp2._id %>?_method=PUT" method="post">
@@ -117,6 +119,7 @@
       <button class="feedback-btn" type="submit">send</button>
     </form> 
          </div>
+         <% }  %>
 
       </div>
       <% i++; }) %> <% } %>
