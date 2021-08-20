@@ -80,6 +80,51 @@
         </form>
       </div>
     </section>
+    <section class="list-Beautician-sec">
+      <h1 >
+          Beautician's
+      </h1>
+  
+      <table>
+          <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Gender</th>
+            
+            <th>Remove</th>
+  
+            
+            
+            
+            
+          </thead>
+          
+              <%
+             if(beautician.length!=0){
+             var i=1;
+             beautician.forEach(function(beautician){
+             %>
+             <tbody id="tbody">
+                 <tr>
+              <td><%=beautician._id %></td>
+              <td><%=beautician.name %></td>
+              <td><%=beautician.email %></td>
+              <td><%=beautician.phone_no %></td>
+              <td><%=beautician.gender %></td>
+              <td> <form action="/deleteBeautician/<%=beautician._id%>?_method=DELETE" method="post"> <button class="btn btn-delete color-r">Remove</button> </form>
+                   </td>
+              
+               </tr>
+          </tbody>
+  
+              <%  i++; }) %>
+               <% } %>
+  
+      </table>
+  
+  </section>
     
   </body>
 </html>

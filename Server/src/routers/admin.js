@@ -116,7 +116,7 @@ adminRouter.get("/addBeautician", adminAuthenticate, async (req, res) => {
       throw new Error("Beautician not found");
     }
     console.log(beautician);
-    res.status(201).render("admin-beautician");
+    res.status(201).render("admin-beautician",{beautician:beautician});
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);
@@ -130,7 +130,7 @@ adminRouter.post("/addBeautician", adminAuthenticate, async (req, res) => {
       name, email, phone_no, gender, password, address
     });
     await beautician.save();
-    res.status(201).render("admin-beautician");
+    res.redirect("/addBeautician");
   } catch (err) {
     console.log(err);
   }
@@ -267,7 +267,7 @@ adminRouter.delete("/deleteBeautician/:id", adminAuthenticate, async (req, res) 
   try {
     const _id = req.params.id;
     const beautician = await Beautician.findByIdAndDelete(_id);
-    res.redirect("/addBeauticians");
+    res.redirect("/addBeautician");
     console.log(beautician);
   } catch (err) {
     res.status(500).send(err);

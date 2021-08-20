@@ -93,7 +93,7 @@ table {
   border: 1px solid #ddd;
 }
 th{
-  background-color:#6C63FF;
+  background-color:#edbe4d;
   text-align: left;
   padding: 16px;
   font-family: mulib;
@@ -108,4 +108,11 @@ th{
 tbody:nth-child(odd)
 {
   background-color: #d9d7fc;
+}
+.color-r
+{
+  color: #f26967;
+}
+.color-r:hover{
+  color: #fff;
 }
