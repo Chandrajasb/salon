@@ -1,0 +1,44 @@
+<section class="list-Beautician-sec">
+    <h1 >
+        Beautician's
+    </h1>
+
+    <table>
+        <thead>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Gender</th>
+          <th>address</th>
+          <th>Remove</th>
+
+          
+          
+          
+          
+        </thead>
+        
+            <%
+           if(result.length!=0){
+           var i=1;
+           result.forEach(function(result){
+           %>
+           <tbody id="tbody">
+               <tr>
+            <td><%=result.message %></td>
+            <td><%=result.name %></td>
+            <td><%=result.email %></td>
+            <td><%=result.message %></td>
+            <td><%=result.name %></td>
+            <td> <form action="<%=result.email %>" methord="post"> <button>Remove</button> </form>
+                 </td>
+            
+             </tr>
+        </tbody>
+
+            <%  i++; }) %>
+             <% } %>
+
+    </table>
+
+</section>

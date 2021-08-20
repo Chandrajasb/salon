@@ -19,8 +19,8 @@
         <div class="nav-items">
           <!-- <a class="nav-link" href="/adminpage">home</a> -->
           <a class="nav-link" href="/listServices">Services</a>
-          <a class="nav-link" href="/userlist">users</a>
-          <a class="nav-link"  href="" ><span id="myBtn"> appointment</span></a>
+          
+          <a class="nav-link" href="">appointment</a>
           <a class="nav-link" href="/addBeautician">beautician </a>
         </div>
         <div class="nav-logo">
@@ -31,23 +31,44 @@
         </div>
       </div>
     </nav>
-
-    <div id="myModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h1> Appointment at</h1>
-        <div style="margin-top: 5vh">
-          <a href=""><button class="btn-nav">Doarstep appointments </button></a>
-          <a href=""
-            ><button class="btn-nav">salon appointments</button></a
-          >
-        </div>
-      </div>
-    </div>
-
-    <section class="">
-
+    <section class="list-Beautician-sec" style="margin:5vh auto">
+        <h1 >
+            Beautician's
+        </h1>
+    
+        <table>
+            <thead>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Gender</th>
+              
+    
+              
+              
+              
+              
+            </thead>
+            
+                <%
+               if(users.length!=0){
+               var i=1;
+               users.forEach(function(users){
+               %>
+               <tbody id="tbody">
+                   <tr>
+                <td><%=users.name %></td>
+                <td><%=users.phone_no %></td>
+                <td><%=users.email %></td>
+                <td><%=users.gender %></td>
+                
+            </tbody>
+    
+                <%  i++; }) %>
+                 <% } %>
+    
+        </table>
+    
     </section>
   </body>
 </html>

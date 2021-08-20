@@ -7,6 +7,7 @@ adminRouter.use(express.json());
 const adminAuthenticate = require("../middleware/adminAuthenticate");
 const Appointment = require("../models/appointmentSchema");
 const AppointmentSalon = require("../models/appointmentSalonSchema");
+const user = require("../models/userSchema");
 const Contact = require("../models/contactSchema");
 const methodOverride = require("method-override");
 adminRouter.use(methodOverride("_method"));
@@ -107,6 +108,33 @@ adminRouter.get("/listServices", adminAuthenticate, async (req, res) => {
   }
 });
 
+
+adminRouter.get("/addBeautician", adminAuthenticate, (req,res)=>{
+  res.render("admin-beautician");
+  // try
+  // {
+
+  // }
+  // catch (err) {
+  //   res.status(401).send("Unauthorized:No token provided");
+  // }
+});
+
+adminRouter.post("/addBeautician", adminAuthenticate, async (req, res) => {
+  const { name , email ,phone_no , gender ,password ,address } = req.body;
+  try {
+    const Beautician = new Beautician({
+      name , email ,phone_no , gender ,password ,address
+    });
+    await service.save();
+    res.status(201).render("admin-beautician");
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+
+
 adminRouter.post("/addService", adminAuthenticate, async (req, res) => {
   const { serviceName, cost, gender } = req.body;
   try {
@@ -157,6 +185,20 @@ adminRouter.get("/feedbacks", adminAuthenticate, async (req, res) => {
       throw new Error("Feebacks not found");
     }
     console.log(feebacks);
+  } catch (err) {
+    res.status(401).send("Unauthorized:No token provided");
+    console.log(err);
+  }
+});
+
+adminRouter.get("/userlist", adminAuthenticate, async (req, res) => {
+  try {
+    const user = await user.find();
+    if (!user) {
+      throw new Error("User not found");
+    }
+    console.log(user);
+    res.render("admin-user", { users: user});
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);
