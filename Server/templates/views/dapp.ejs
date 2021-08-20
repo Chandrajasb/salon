@@ -52,8 +52,36 @@
         <h3>Services selected:</h3>
 
         <p><%= dapp.service %></p>
+
+        <h3>Rate your service:</h3>
+          <div>
+         <form class="feedback-form" action="" methord="post">
+        <div class="rate">
+          <input type="radio" id="star5" name="rate" value="5" />
+          <label for="star5" title="text">5 stars</label>
+          <input type="radio" id="star4" name="rate" value="4" />
+          <label for="star4" title="text">4 stars</label>
+          <input type="radio" id="star3" name="rate" value="3" />
+          <label for="star3" title="text">3 stars</label>
+          <input type="radio" id="star2" name="rate" value="2" />
+          <label for="star2" title="text">2 stars</label>
+          <input type="radio" id="star1" name="rate" value="1" />
+          <label for="star1" title="text">1 star</label>
+        </div>
+        
+        <textarea class="feedback-text" name="address"
+        cols="50"
+        rows="3"
+        placeholder="your feedback"></textarea>
+        <button class="feedback-btn" type="submit">send</button>
+      </form> 
+           </div>
+
       </div>
-      <% i++; }) %> <% } %> <% if(dapp2.length!=0){ var i=1;
+      <% i++; }) %> <% } %> 
+
+
+      <% if(dapp2.length!=0){ var i=1;
       dapp2.forEach(function(dapp2){ %>
 
       <div class="recent-card">
@@ -64,6 +92,32 @@
         <h3>Services selected:</h3>
 
         <p><%= dapp.service %></p>
+
+
+        <h3>Rate your service:</h3>
+        <div>
+       <form class="feedback-form" action="" methord="post">
+      <div class="rate">
+        <input type="radio" id="star5" name="rate" value="5" />
+        <label for="star5" title="text">5 stars</label>
+        <input type="radio" id="star4" name="rate" value="4" />
+        <label for="star4" title="text">4 stars</label>
+        <input type="radio" id="star3" name="rate" value="3" />
+        <label for="star3" title="text">3 stars</label>
+        <input type="radio" id="star2" name="rate" value="2" />
+        <label for="star2" title="text">2 stars</label>
+        <input type="radio" id="star1" name="rate" value="1" />
+        <label for="star1" title="text">1 star</label>
+      </div>
+      
+      <textarea class="feedback-text" name="address"
+      cols="50"
+      rows="3"
+      placeholder="your feedback"></textarea>
+      <button class="feedback-btn" type="submit">send</button>
+    </form> 
+         </div>
+
       </div>
       <% i++; }) %> <% } %>
     </section>
