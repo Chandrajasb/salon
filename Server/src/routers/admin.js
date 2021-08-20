@@ -3,11 +3,11 @@ const adminRouter = express.Router();
 require("../db/conn");
 const Admin = require("../models/adminSchema");
 const Service = require("../models/serviceSchema");
+const Beautician = require("../models/beauticianSchema");
 adminRouter.use(express.json());
 const adminAuthenticate = require("../middleware/adminAuthenticate");
 const Appointment = require("../models/appointmentSchema");
 const AppointmentSalon = require("../models/appointmentSalonSchema");
-const user = require("../models/userSchema");
 const Contact = require("../models/contactSchema");
 const methodOverride = require("method-override");
 adminRouter.use(methodOverride("_method"));
@@ -109,32 +109,32 @@ adminRouter.get("/listServices", adminAuthenticate, async (req, res) => {
 });
 
 
-adminRouter.get("/addBeautician", adminAuthenticate, (req,res)=>{
-  res.render("admin-beautician");
-  // try
-  // {
-
-  // }
-  // catch (err) {
-  //   res.status(401).send("Unauthorized:No token provided");
-  // }
+adminRouter.get("/addBeautician", adminAuthenticate, async (req, res) => {
+  try {
+    const beautician = await Beautician.find();
+    if (!beautician) {
+      throw new Error("Beautician not found");
+    }
+    console.log(beautician);
+    res.status(201).render("admin-beautician");
+  } catch (err) {
+    res.status(401).send("Unauthorized:No token provided");
+    console.log(err);
+  }
 });
 
 adminRouter.post("/addBeautician", adminAuthenticate, async (req, res) => {
-  const { name , email ,phone_no , gender ,password ,address } = req.body;
+  const { name, email, phone_no, gender, password, address } = req.body;
   try {
-    const Beautician = new Beautician({
-      name , email ,phone_no , gender ,password ,address
+    const beautician = new Beautician({
+      name, email, phone_no, gender, password, address
     });
-    await service.save();
+    await beautician.save();
     res.status(201).render("admin-beautician");
   } catch (err) {
     console.log(err);
   }
 });
-
-
-
 adminRouter.post("/addService", adminAuthenticate, async (req, res) => {
   const { serviceName, cost, gender } = req.body;
   try {
@@ -150,6 +150,24 @@ adminRouter.post("/addService", adminAuthenticate, async (req, res) => {
   }
 });
 
+adminRouter.get("/admin/appointmentSalon", adminAuthenticate, async (req, res) => {
+  try {
+    const appointmentsMaleSalon = await AppointmentSalon.find({ gender: "male" });
+    if (!appointmentsMaleSalon) {
+      throw new Error("Appointments not found");
+    }
+    const appointmentsFemaleSalon = await AppointmentSalon.find({ gender: "female" });
+    if (!appointmentsFemaleSalon) {
+      throw new Error("Appointments not found");
+    }
+    console.log(appointmentsMaleSalon);
+    console.log(appointmentsFemaleSalon);
+    // res.render("appointment", { service: appointment });
+  } catch (err) {
+    res.status(401).send("Unauthorized:No token provided");
+    console.log(err);
+  }
+});
 adminRouter.get("/admin/appointment", adminAuthenticate, async (req, res) => {
   try {
     const appointmentsMale = await Appointment.find({ gender: "male" });
@@ -160,18 +178,8 @@ adminRouter.get("/admin/appointment", adminAuthenticate, async (req, res) => {
     if (!appointmentsFemale) {
       throw new Error("Appointments not found");
     }
-    const appointmentsMaleSalon = await AppointmentSalon.find({ gender: "male" });
-    if (!appointmentsMaleSalon) {
-      throw new Error("Appointments not found");
-    }
-    const appointmentsFemaleSalon = await AppointmentSalon.find({ gender: "female" });
-    if (!appointmentsFemaleSalon) {
-      throw new Error("Appointments not found");
-    }
     console.log(appointmentsMale);
     console.log(appointmentsFemale);
-    console.log(appointmentsMaleSalon);
-    console.log(appointmentsFemaleSalon);
     // res.render("appointment", { service: appointment });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
@@ -198,7 +206,7 @@ adminRouter.get("/userlist", adminAuthenticate, async (req, res) => {
       throw new Error("User not found");
     }
     console.log(user);
-    res.render("admin-user", { users: user});
+    res.render("admin-user", { users: user });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);
@@ -217,6 +225,32 @@ adminRouter.put("/editService/:id", adminAuthenticate, async (req, res) => {
     res.status(500).send(err);
   }
 });
+//Edit Appointment
+adminRouter.put("/editAppointment/:id", adminAuthenticate, async (req, res) => {
+  try {
+    const _id = req.params.id;
+    const appointment = await Appointment.findByIdAndUpdate(_id, req.body, {
+      new: true,
+    });
+    res.redirect("/listAppointments");
+    console.log(appointment);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+//Edit Appointment salon
+adminRouter.put("/editAppointmentSalon/:id", adminAuthenticate, async (req, res) => {
+  try {
+    const _id = req.params.id;
+    const appointmentSalon = await AppointmentSalon.findByIdAndUpdate(_id, req.body, {
+      new: true,
+    });
+    res.redirect("/listAppointments");
+    console.log(appointmentSalon);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 //Delete Service
 adminRouter.delete("/deleteService/:id", adminAuthenticate, async (req, res) => {
   try {
@@ -224,6 +258,17 @@ adminRouter.delete("/deleteService/:id", adminAuthenticate, async (req, res) => 
     const service = await Service.findByIdAndDelete(_id);
     res.redirect("/listServices");
     console.log(service);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+//Delete Beautician
+adminRouter.delete("/deleteBeautician/:id", adminAuthenticate, async (req, res) => {
+  try {
+    const _id = req.params.id;
+    const beautician = await Beautician.findByIdAndDelete(_id);
+    res.redirect("/addBeauticians");
+    console.log(beautician);
   } catch (err) {
     res.status(500).send(err);
   }

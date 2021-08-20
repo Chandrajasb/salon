@@ -24,6 +24,7 @@ app.use(express.urlencoded({ extend: false }));
 app.set("view engine", "ejs");
 app.use(express.static(static_path));
 app.use(require("./routers/admin"));
+app.use(require("./routers/beautician"));
 console.log(static_path);
 
 app.set("views", template_path);
