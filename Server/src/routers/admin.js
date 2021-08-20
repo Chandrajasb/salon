@@ -148,7 +148,7 @@ adminRouter.get("/admin/appointment", adminAuthenticate, async (req, res) => {
     console.log(err);
   }
 });
-adminRouter.get("/feedbacks", adminAuthenticate, async (req, res) => {
+adminRouter.get("/contactus", adminAuthenticate, async (req, res) => {
   try {
     const feebacks = await Contact.find();
     if (!feebacks) {
@@ -209,5 +209,6 @@ adminRouter.post("/adminlogin", async (req, res) => {
     console.log(err);
   }
 });
+
 
 module.exports = adminRouter;
