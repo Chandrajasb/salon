@@ -1,12 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <h1>Beautician Page</h1>
-</body>
-</html>
+
+    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+
+    
+    <script src="/js/model.js"></script>
+    <script
+      src="https://kit.fontawesome.com/154fa5a621.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav class="navbar-sec">
+      <div class="navbar">
+        <div class="nav-items">
+          <!-- <a class="nav-link" href="/adminpage">home</a> -->
+          
+          <a class="nav-link" href="/logout">logout </a>
+        </div>
+        <div class="nav-logo">
+          <h1>Salon</h1>
+        </div>
+        <div class="nav-button">
+         <button >H! <%=name %></button>
+        </div>
+       
+      </div>
+    </nav>
+
+    
+
+    <section class="mt-5" >
+      <h1 style="text-align: center" >
+        Assigned Tasks
+    </h1>
+
+    <table>
+        <thead>
+          <th>Name</th>
+          <th>Phone Number</th>
+          <th>Gender</th>
+          <th>date</th>
+          <th>time</th>
+          <th>service</th>
+          <th>status</th>
+          <th>Rating</th>
+          <th>feedback</th>
+          
+          <th>Update</th>
+          
+
+        </thead>
+        
+            <%
+           if(appointments.length!=0){
+           var i=1;
+           appointments.forEach(function(appointments){
+           %>
+           <tbody id="tbody">
+               <tr>
+            <td><%=appointments.name %></td>
+            <td><%=appointments.phone %></td>
+            <td><%=appointments.gender %></td>
+            <td><%=appointments.date %></td>
+            <td><%=appointments.time %></td>
+            <td><%=appointments.service %></td>
+            <td><%=appointments.status %></td>
+            <% if(appointments.rate == 0){ %>
+            <td>Yet to Rate</td>
+            <td>--</td>
+            <% } else{ %> 
+              <td><%=appointments.rate %></td>
+            <td><%=appointments.feedback %></td>
+            <% } %>
+            <td> <form action="/beautician/editAppointment/<%=appointments._id%>?_method=PUT" method="post"><input type="text" name="status" value="completed" style="display: none;"> <button class="btn btn-edit color-y">Update as Completed</button> </form>
+                 </td>
+            
+             </tr>
+        </tbody>
+
+            <%  i++; }) %>
+             <% } %>
+
+    </table>
+
+    </section>
+
+
+  </body>
+  </html>
