@@ -24,6 +24,14 @@ const appointmentSalonSchema = new mongoose.Schema({
     service: {
         type: Array,
         required: true,
+    },
+    status: {
+      type: String,
+      default: "pending",
+    },
+    assign: {
+      type: String,
+      default: "notAssigned",
     }
 });
 
