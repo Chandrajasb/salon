@@ -207,6 +207,21 @@ app.get("/user/services", Authenticate, async (req, res) => {
     console.log(err);
   }
 });
+app.get("/allservices",  async (req, res) => {
+  try {
+    const Services = await Service.find();
+    if (!Services) {
+      throw new Error("Services not found");
+    }
+    console.log(Services);
+    return res
+      .status(201)
+      .render("userservices", { Services: Services,});
+  } catch (err) {
+    res.status(401).send("Unauthorized:No token provided");
+    console.log(err);
+  }
+});
 //contactus Route
 app.post("/contactus", async (req, res) => {
   const { name, email, message } = req.body;
