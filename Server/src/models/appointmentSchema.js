@@ -28,6 +28,14 @@ const appointmentSchema = new mongoose.Schema({
   address: {
     type: String,
     required: true,
+  },
+  status: {
+    type: String,
+    default: "pending",
+  },
+  assign: {
+    type: String,
+    default: "notAssigned",
   }
 });
 
