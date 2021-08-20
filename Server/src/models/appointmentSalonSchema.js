@@ -26,12 +26,20 @@ const appointmentSalonSchema = new mongoose.Schema({
         required: true,
     },
     status: {
-      type: String,
-      default: "pending",
+        type: String,
+        default: "pending",
     },
     assign: {
-      type: String,
-      default: "notAssigned",
+        type: String,
+        default: "notAssigned",
+    },
+    rate: {
+        type: Number,
+        default: 0,
+    },
+    feedback: {
+        type: String,
+        default: "nofeedback",
     }
 });
 
