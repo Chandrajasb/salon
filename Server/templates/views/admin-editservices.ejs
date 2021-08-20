@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>salon</title>
+    <link rel="stylesheet" href="css/login.css" />
+    <script
+      src="https://kit.fontawesome.com/154fa5a621.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <section class="background bg-centered" style="min-height: 80vh">
+      <div class="container container-centered">
+        <form class="app-form" action="/addService" method="POST">
+          <h1 style="text-align: center">Edit service</h1>
+          <div class="input-box">
+            <i class="fas fa-user-alt"></i>
+            <input
+              type="text"
+              name="serviceName"
+              placeholder="Service Name"
+              required
+            />
+          </div>
+
+          <div class="input-box">
+            <i class="fas fa-envelope"></i>
+            <input type="text" placeholder="Cost" name="cost" required />
+          </div>
+          <div class="gender" style="margin-bottom: 2vh">
+            <label class="gcontainer"
+              >Male
+              <input type="radio" name="gender" value="male" required />
+              <span class="checkmark"></span>
+            </label>
+            <label class="gcontainer"
+              >Female
+              <input type="radio" name="gender" value="female" required />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+
+          <button class="submit-btn" type="submit">Upate</button>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>

@@ -41,13 +41,19 @@
           <h1><%= femaleServices.serviceName %></h1>
           <h4>cost:<%= femaleServices.cost %></h4>
           <div>
+            <div class="service-card-btns">
+              <div>
             <a href="/editService/<%= femaleServices._id %>"
               ><button class="btn btn-edit">Edit</button></a
             >
+          </div>
+          <div>
             <form action="/deleteService/<%= maleServices._id %>?_method=DELETE" method="POST">
             
               <button type="submit" class="btn btn-delete">Delete</button>
             </form>
+          </div>
+          </div>
           </div>
         </div>
         <% i++; }) %> <% } %>
@@ -62,14 +68,18 @@
         <div class="service-card card-color">
           <h1><%= maleServices.serviceName %></h1>
           <h4>cost: <%= maleServices.cost %></h4>
-          <div>
+          <div class="service-card-btns">
+            <div>
             <a href="./editService/<%= maleServices._id %>"
               ><button class="btn btn-edit">Edit</button></a
             >
+          </div>
+            <div>
             <form action="./deleteService/<%= maleServices._id %>?_method=DELETE" method="POST">
             
               <button type="submit" class="btn btn-delete">Delete</button>
             </form>
+          </div>
           </div>
         </div>
         <% i++; }) %> <% } %>

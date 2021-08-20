@@ -71,3 +71,8 @@
 .btn-delete:hover {
   background-color: #f26967;
 }
+.service-card-btns
+{
+  display: flex;
+  flex-direction: row;
+}
