@@ -7,6 +7,7 @@ adminRouter.use(express.json());
 const adminAuthenticate = require("../middleware/adminAuthenticate");
 const Appointment = require("../models/appointmentSchema");
 const AppointmentSalon = require("../models/appointmentSalonSchema");
+const user = require("../models/userSchema");
 const Contact = require("../models/contactSchema");
 const Beautician = require("../models/beauticianSchema");
 
@@ -191,12 +192,12 @@ adminRouter.get("/contactus", adminAuthenticate, async (req, res) => {
 
 adminRouter.get("/userlist", adminAuthenticate, async (req, res) => {
   try {
-    const users = await users.find();
-    if (!users) {
+    const user = await user.find();
+    if (!user) {
       throw new Error("User not found");
     }
-    console.log(users);
-    res.render("admin-user", { users: users });
+    console.log(user);
+    res.render("admin-user", { users: user});
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);
