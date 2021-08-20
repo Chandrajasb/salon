@@ -8,6 +8,7 @@ const adminAuthenticate = require("../middleware/adminAuthenticate");
 const Appointment = require("../models/appointmentSchema");
 const AppointmentSalon = require("../models/appointmentSalonSchema");
 const Contact = require("../models/contactSchema");
+const Beautician = require("../models/beauticianSchema");
 
 adminRouter.get("/adminLogin", (req, res) => {
   res.render("adminLogin");
@@ -104,6 +105,33 @@ adminRouter.get("/listServices", adminAuthenticate, async (req, res) => {
     console.log(err);
   }
 });
+
+
+adminRouter.get("/addBeautician", adminAuthenticate, (req,res)=>{
+  res.render("admin-beautician");
+  // try
+  // {
+
+  // }
+  // catch (err) {
+  //   res.status(401).send("Unauthorized:No token provided");
+  // }
+});
+
+adminRouter.post("/addBeautician", adminAuthenticate, async (req, res) => {
+  const { name , email ,phone_no , gender ,password ,address } = req.body;
+  try {
+    const Beautician = new Beautician({
+      name , email ,phone_no , gender ,password ,address
+    });
+    await service.save();
+    res.status(201).render("admin-beautician");
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+
 
 adminRouter.post("/addService", adminAuthenticate, async (req, res) => {
   const { serviceName, cost, gender } = req.body;

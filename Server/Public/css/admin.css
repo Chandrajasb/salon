@@ -76,3 +76,36 @@
   display: flex;
   flex-direction: row;
 }
+.list-Beautician-sec
+{
+  min-height: 100vh;
+}
+.list-Beautician-sec h1
+{
+text-align: center;
+margin: 4vh auto;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+th{
+  background-color:#6C63FF;
+  text-align: left;
+  padding: 16px;
+  font-family: mulib;
+}
+
+ td {
+  text-align: left;
+  padding: 16px;
+  font-family: muli;
+}
+
+tbody:nth-child(odd)
+{
+  background-color: #d9d7fc;
+}
