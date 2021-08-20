@@ -127,3 +127,11 @@ tbody:nth-child(odd)
 {
   padding-top: 15vh;
 }
+.text-box
+{
+  padding:0.5vh;
+  margin-top: 1vh;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+  border: none;
+  
+}

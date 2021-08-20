@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
-    <link rel="stylesheet" href="css/login.css" />
-    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
     <script
       src="https://kit.fontawesome.com/154fa5a621.js"
       crossorigin="anonymous"
@@ -31,9 +32,9 @@
         </div>
       </div>
     </nav>
-    <section class="list-Beautician-sec" style="margin:5vh auto">
-        <h1 >
-            Users's
+    <section  style="padding-top:15vh ">
+        <h1 style="text-align: center">
+            Messages
         </h1>
     
         <table>
@@ -45,15 +46,15 @@
             </thead>
             
                 <%
-               if(users.length!=0){
+               if(feebacks.length!=0){
                var i=1;
-               users.forEach(function(users){
+               feebacks.forEach(function(feebacks){
                %>
                <tbody id="tbody">
                    <tr>
-                <td><%=users.name %></td>  
-                <td><%=users.email %></td>
-                <td><%=users.message %></td>
+                <td><%=feebacks.name %></td>  
+                <td><%=feebacks.email %></td>
+                <td><%=feebacks.message %></td>
                
                 
             </tbody>

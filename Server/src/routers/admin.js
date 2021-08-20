@@ -191,6 +191,7 @@ adminRouter.get("/feedbacks", adminAuthenticate, async (req, res) => {
       throw new Error("Feebacks not found");
     }
     console.log(feebacks);
+    res.render("admin-contact", { feebacks: feebacks });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);

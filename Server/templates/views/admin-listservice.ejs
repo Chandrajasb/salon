@@ -42,15 +42,19 @@
           <h4>cost:<%= femaleServices.cost %>
           </h4>
           <div>
-            <a href="/editService/<%= femaleServices._id %>"><button class="btn btn-edit">Edit</button></a>
-            <form action="/deleteService/<%= maleServices._id %>?_method=DELETE" method="POST">
+            <form action="./editService/<%= femaleServices._id %>?_method=PUT" method="POST">
+              <input class="text-box" value="<%= femaleServices.serviceName %>" name="serviceName" type="text"
+                placeholder="Service Name" required />
+              <input class="text-box" value="<%= femaleServices.cost %>" name="cost" type="text" placeholder="Cost" required />
+              <button type="submit" class="btn btn-edit">update</button>
+            </form>
+            <form action="./deleteService/<%= femaleServices._id %>?_method=DELETE" method="POST">
 
               <button type="submit" class="btn btn-delete">Delete</button>
             </form>
           </div>
           </div>
-          </div>
-        </div>
+         
         <% i++; }) %>
           <% } %>
     </div>
@@ -67,11 +71,11 @@
           <h4>cost: <%= maleServices.cost %>
           </h4>
           <div>
-            <a href=""><button class="btn btn-edit">Edit</button></a>
+            <!-- <a href=""><button class="btn btn-edit">Edit</button></a> -->
             <form action="./editService/<%= maleServices._id %>?_method=PUT" method="POST">
-              <input class="" value="<%= maleServices.serviceName %>" name="serviceName" type="text"
+              <input class="text-box" value="<%= maleServices.serviceName %>" name="serviceName" type="text"
                 placeholder="Service Name" required />
-              <input class="" value="<%= maleServices.cost %>" name="cost" type="text" placeholder="Cost" required />
+              <input class="text-box" value="<%= maleServices.cost %>" name="cost" type="text" placeholder="Cost" required />
               <button type="submit" class="btn btn-edit">update</button>
             </form>
             <form action="./deleteService/<%= maleServices._id %>?_method=DELETE" method="POST">
@@ -80,7 +84,7 @@
             </form>
           </div>
           </div>
-        </div>
+        
         <% i++; }) %>
           <% } %>
     </div>
