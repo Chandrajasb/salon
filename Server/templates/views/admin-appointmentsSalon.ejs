@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="/css/login.css" />
     <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+
     
     <script src="/js/model.js"></script>
     <script
@@ -52,10 +54,62 @@
         </div>
       </div>
     </div>
+    <section class="mt-5" >
+      <h1 style="text-align: center" >
+        Appointments at Salon
+    </h1>
 
-    <section class="">
+    <table>
+        <thead>
+          <th>Name</th>
+          <th>Phone Number</th>
+          <th>Gender</th>
+          <th>date</th>
+          <th>time</th>
+          <th>service</th>
+          <th>status</th>
+          <th>Rating</th>
+          <th>feedback</th>
+          
+          <th>Update</th>
+          
+
+        </thead>
+        
+            <%
+           if(appointmentsSalon.length!=0){
+           var i=1;
+           appointmentsSalon.forEach(function(appointmentsSalon){
+           %>
+           <tbody id="tbody">
+               <tr>
+            <td><%=appointmentsSalon.name %></td>
+            <td><%=appointmentsSalon.phone %></td>
+            <td><%=appointmentsSalon.gender %></td>
+            <td><%=appointmentsSalon.date %></td>
+            <td><%=appointmentsSalon.time %></td>
+            <td><%=appointmentsSalon.service %></td>
+            <td><%=appointmentsSalon.status %></td>
+            <% if(appointmentsSalon.rate == 0){ %>
+            <td>Yet to Rate</td>
+            <td>--</td>
+            <% } else{ %> 
+              <td><%=appointmentsSalon.rate %></td>
+            <td><%=appointmentsSalon.feedback %></td>
+            <% } %>
+            <td> <form action="/editAppointmentSalon/<%=appointmentsSalon._id%>?_method=PUT" method="post"><input type="text" name="status" value="completed" style="display: none;"> <button class="btn btn-edit color-y">Update as Completed</button> </form>
+                 </td>
+            
+             </tr>
+        </tbody>
+
+            <%  i++; }) %>
+             <% } %>
+
+    </table>
 
     </section>
+
+
   </body>
-  <script src="/js/model.js"></script>
-</html>
+  </html>

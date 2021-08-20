@@ -152,17 +152,17 @@ adminRouter.post("/addService", adminAuthenticate, async (req, res) => {
 
 adminRouter.get("/admin/appointmentSalon", adminAuthenticate, async (req, res) => {
   try {
-    const appointmentsMaleSalon = await AppointmentSalon.find({ gender: "male" });
-    if (!appointmentsMaleSalon) {
+    const appointmentsSalon = await AppointmentSalon.find();
+    if (!appointmentsSalon) {
       throw new Error("Appointments not found");
     }
-    const appointmentsFemaleSalon = await AppointmentSalon.find({ gender: "female" });
-    if (!appointmentsFemaleSalon) {
-      throw new Error("Appointments not found");
-    }
-    console.log(appointmentsMaleSalon);
-    console.log(appointmentsFemaleSalon);
-    // res.render("appointment", { service: appointment });
+    // const appointmentsFemaleSalon = await AppointmentSalon.find({ gender: "female" });
+    // if (!appointmentsFemaleSalon) {
+    //   throw new Error("Appointments not found");
+    // }
+    console.log(appointmentsSalon);
+    
+    res.render("admin-appointmentsSalon", { appointmentsSalon: appointmentsSalon });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);
@@ -242,10 +242,11 @@ adminRouter.put("/editAppointment/:id", adminAuthenticate, async (req, res) => {
 adminRouter.put("/editAppointmentSalon/:id", adminAuthenticate, async (req, res) => {
   try {
     const _id = req.params.id;
+    console.log(req.body);
     const appointmentSalon = await AppointmentSalon.findByIdAndUpdate(_id, req.body, {
       new: true,
     });
-    res.redirect("/listAppointments");
+    res.redirect("/admin/appointmentSalon");
     console.log(appointmentSalon);
   } catch (err) {
     res.status(500).send(err);

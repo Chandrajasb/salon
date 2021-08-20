@@ -107,7 +107,7 @@ th{
 
 tbody:nth-child(odd)
 {
-  background-color: #d9d7fc;
+  background-color: #f1ede3;
 }
 .color-r
 {
@@ -115,4 +115,15 @@ tbody:nth-child(odd)
 }
 .color-r:hover{
   color: #fff;
+}
+.color-y
+{
+  color:#edbe4d
+}
+.color-y:hover{
+  color: #fff;
+}
+.mt-5
+{
+  padding-top: 15vh;
 }
