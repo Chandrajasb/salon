@@ -1,61 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aesthetic</title>
 
-    <link rel="stylesheet" href="/css/login.css" />
-    <link rel="stylesheet" href="/css/index.css" />
-    
-    <script src="/js/model.js"></script>
-    <script
-      src="https://kit.fontawesome.com/154fa5a621.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <nav class="navbar-sec">
-      <div class="navbar">
-        <div class="nav-items">
-          <!-- <a class="nav-link" href="/adminpage">home</a> -->
-          <a class="nav-link" href="/listServices">Services</a>
-          <a class="nav-link" href="/userlist">users</a>
-          <a class="nav-link"  href="/feedbacks" >Messages</a>
-          <a class="nav-link" href="/addBeautician">beautician </a>
-        </div>
-        <div class="nav-logo">
-          <h1>Aesthetic</h1>
-        </div>
-        <div class="nav-button">
-          <a href="/addservice"><button >Add services</button></a>
-        </div>
-        <div class="nav-button">
-         <button id="myBtn" >Appointments</button>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aesthetic</title>
+
+  <link rel="stylesheet" href="/css/login.css" />
+  <link rel="stylesheet" href="/css/index.css" />
+
+  <script src="/js/model.js"></script>
+  <script src="https://kit.fontawesome.com/154fa5a621.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+  <nav class="navbar-sec">
+    <div class="navbar">
+      <div class="nav-items">
+        <!-- <a class="nav-link" href="/adminpage">home</a> -->
+        <a class="nav-link" href="/listServices">Services</a>
+        <a class="nav-link" href="/userlist">users</a>
+        <a class="nav-link" href="/feedbacks">Messages</a>
+        <a class="nav-link" href="/addBeautician">beautician </a>
       </div>
-    </nav>
-
-    
-
-    <div id="myModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h1> Appointment at</h1>
-        <div style="margin-top: 5vh">
-          <a href="/admin/appointment"><button class="btn-nav">Doarstep appointments </button></a>
-          <a href="/admin/appointmentSalon"
-            ><button class="btn-nav">salon appointments</button></a
-          >
-        </div>
+      <div class="nav-logo">
+        <h1>Aesthetic</h1>
+      </div>
+      <div class="nav-button">
+        <a href="/addservice"><button>Add services</button></a>
+      </div>
+      <div class="nav-button">
+        <button id="myBtn">Appointments</button>
       </div>
     </div>
+  </nav>
 
-    <section class="">
 
-    </section>
-  </body>
-  <script src="/js/model.js"></script>
+
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h1> Appointment at</h1>
+      <div style="margin-top: 5vh">
+        <a href="/admin/appointment"><button class="btn-nav">Doarstep appointments </button></a>
+        <a href="/admin/appointmentSalon"><button class="btn-nav">salon appointments</button></a>
+      </div>
+    </div>
+  </div>
+
+  <section class="">
+    <br><br><br><br><br>
+  </section>
+  <div>
+    <div id="chart">
+      <div id="chart1">
+        <canvas id="myChart"></canvas>
+        <canvas id="myChart2"></canvas>
+      </div>
+      <div id="chart2">
+        <canvas id="myChart3"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const data = {
+      labels: [
+        'Male',
+        'Female'
+      ],
+      datasets: [{
+        label: 'Services',
+        data: <%= JSON.stringify(totalCount); %>,
+        backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)'
+      ],
+        hoverOffset: 4
+  }]
+};
+    const data2 = {
+      labels: [
+        'DoorStep',
+        'Salon'
+      ],
+      datasets: [{
+        label: 'Total Appointments',
+        data: <%= JSON.stringify(totalAppointmentsCount); %>,
+        backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)'
+      ],
+        hoverOffset: 4
+  }]
+};
+
+    const data3 = {
+      labels: ['MaleSalon', 'FemaleSalon', 'Male', 'Female'],
+      datasets: [{
+        label: 'Appointments',
+        data: <%= JSON.stringify(separatedAppointmentsCount); %>,
+        backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(255, 205, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)'
+      ],
+        borderColor: [
+        'rgb(255, 99, 132)',
+        'rgb(255, 159, 64)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)'
+      ],
+        borderWidth: 1
+  }]
+};
+    const config = {
+      type: 'pie',
+      data: data,
+    };
+
+    var myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+
+    const config2 = {
+      type: 'doughnut',
+      data: data2,
+    };
+    var myChart2 = new Chart(
+      document.getElementById('myChart2'),
+      config2
+    );
+
+    const config3 = {
+      type: 'bar',
+      data: data3,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      },
+    };
+
+    var myChart3 = new Chart(
+      document.getElementById('myChart3'),
+      config3
+    );
+  </script>
+
+</body>
+<script src="/js/model.js"></script>
+
 </html>
