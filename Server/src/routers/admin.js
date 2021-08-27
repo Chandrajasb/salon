@@ -76,9 +76,15 @@ adminRouter.get("/adminpage", adminAuthenticate, async (req, res) => {
     console.log(appointmentsSalonCount);
     console.log(appointmentsMaleSalonCount);
     console.log(appointmentsFemaleSalonCount);
+    let totalCount = [maleServicesCount, femaleServicesCount]
+    let totalAppointmentsCount = [appointmentsCount, appointmentsSalonCount]
+    let separatedAppointmentsCount = [appointmentsMaleSalonCount, appointmentsFemaleSalonCount, appointmentsMaleCount, appointmentsFemaleCount]
     res.render("adminpage", {
       maleServicesCount: maleServicesCount,
       femaleServicesCount: femaleServicesCount,
+      totalCount: totalCount,
+      totalAppointmentsCount: totalAppointmentsCount,
+      separatedAppointmentsCount: separatedAppointmentsCount,
     });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
@@ -116,7 +122,7 @@ adminRouter.get("/addBeautician", adminAuthenticate, async (req, res) => {
       throw new Error("Beautician not found");
     }
     console.log(beautician);
-    res.status(201).render("admin-beautician",{beautician:beautician});
+    res.status(201).render("admin-beautician", { beautician: beautician });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);
@@ -161,7 +167,7 @@ adminRouter.get("/admin/appointmentSalon", adminAuthenticate, async (req, res) =
     //   throw new Error("Appointments not found");
     // }
     console.log(appointmentsSalon);
-    
+
     res.render("admin-appointmentsSalon", { appointmentsSalon: appointmentsSalon });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
@@ -175,10 +181,10 @@ adminRouter.get("/admin/appointment", adminAuthenticate, async (req, res) => {
     if (!appointments) {
       throw new Error("Appointments not found");
     }
-    
+
     console.log(appointments);
-    
-    res.render("admin-appointments", { appointments: appointments,beautician:beautician });
+
+    res.render("admin-appointments", { appointments: appointments, beautician: beautician });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);
