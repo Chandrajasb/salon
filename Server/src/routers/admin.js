@@ -175,6 +175,35 @@ adminRouter.get("/admin/appointmentSalon", adminAuthenticate, async (req, res) =
     console.log(err);
   }
 });
+adminRouter.get("/admin/appointmentPendingSalon", adminAuthenticate, async (req, res) => {
+  try {
+    const appointmentspendingSalon = await AppointmentSalon.find({ status: "pending" });
+    if (!appointmentspendingSalon) {
+      throw new Error("Appointments not found");
+    }
+    console.log(appointmentspendingSalon);
+
+    // res.render("admin-appointmentsSalon", { appointmentspendingSalon: appointmentspendingSalon });
+  } catch (err) {
+    res.status(401).send("Unauthorized:No token provided");
+    console.log(err);
+  }
+});
+adminRouter.get("/admin/appointmentPending", adminAuthenticate, async (req, res) => {
+  try {
+    const appointmentspending = await Appointment.find({ status: "pending" });
+    if (!appointmentspending) {
+      throw new Error("Appointments not found");
+    }
+    console.log(appointmentspending);
+
+    // res.render("admin-appointments", { appointmentspending: appointmentspending });
+  } catch (err) {
+    res.status(401).send("Unauthorized:No token provided");
+    console.log(err);
+  }
+});
+
 adminRouter.get("/admin/appointment", adminAuthenticate, async (req, res) => {
   try {
     const appointments = await Appointment.find();
