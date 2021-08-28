@@ -6,16 +6,29 @@
 }
 #chart{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 50px;
 }
 #chart1{
-  width: 250px;
-  height: 250px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  /* width: 250px;
+  height: 250px; */
+}
+#chart11
+{
+width: 20vw;
+  
+}
+#chart12
+{
+  width: 20vw;
 }
 #chart2{
-  width: 500px;
-  height: 500px;
+  align-self: center;
+  width: 60vw;
+  height: 70vh;
 }
 .hero-sec {
   min-height: 100vh;

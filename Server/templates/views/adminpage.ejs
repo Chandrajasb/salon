@@ -47,9 +47,9 @@
       <span class="close">&times;</span>
       <h1> Appointment at</h1>
       <div style="margin-top: 5vh">
-        <a href="/admin/appointmentPending"><button class="btn-nav">Doarstep appointments Pending </button></a>
+        <a href="/admin/appointmentPending"><button class="btn-nav">Doorstep appointments Pending </button></a>
         <a href="/admin/appointmentPendingSalon"><button class="btn-nav">salon appointments Pending</button></a>
-        <a href="/admin/appointment"><button class="btn-nav">All Doarstep appointments </button></a>
+        <a href="/admin/appointment"><button class="btn-nav">All Doorstep appointments </button></a>
         <a href="/admin/appointmentSalon"><button class="btn-nav">All salon appointments</button></a>
 
       </div>
@@ -59,14 +59,20 @@
   <section class="">
     <br><br><br><br><br>
   </section>
-  <div>
+  <div style="margin: 2vh 10vw;">
     <div id="chart">
-      <div id="chart1">
-        <canvas id="myChart"></canvas>
-        <canvas id="myChart2"></canvas>
-      </div>
       <div id="chart2">
         <canvas id="myChart3"></canvas>
+       
+      </div>
+      <div id="chart1">
+        <div id="chart11">
+        <canvas id="myChart"></canvas>
+      </div>
+      <div id="chart12">
+        <canvas id="myChart2"></canvas>
+      </div>
+        
       </div>
     </div>
   </div>
@@ -74,8 +80,8 @@
   <script>
     const data = {
       labels: [
-        'Male',
-        'Female'
+        'Male Services',
+        'Female Services'
       ],
       datasets: [{
         label: 'Services',
@@ -89,8 +95,8 @@
 };
     const data2 = {
       labels: [
-        'DoorStep',
-        'Salon'
+        'DoorStep Appointments',
+        'Salon Appointments'
       ],
       datasets: [{
         label: 'Total Appointments',
@@ -104,7 +110,7 @@
 };
 
     const data3 = {
-      labels: ['MaleSalon', 'FemaleSalon', 'Male', 'Female'],
+      labels: ['Male at Salon', 'Female at Salon', 'Male at DoorStep', 'Female at DoorStep'],
       datasets: [{
         label: 'Appointments',
         data: <%= JSON.stringify(separatedAppointmentsCount); %>,
