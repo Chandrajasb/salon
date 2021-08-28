@@ -2,6 +2,7 @@ const express = require("express");
 const adminRouter = express.Router();
 require("../db/conn");
 const Admin = require("../models/adminSchema");
+const User = require("../models/userSchema");
 const Service = require("../models/serviceSchema");
 const Beautician = require("../models/beauticianSchema");
 adminRouter.use(express.json());
