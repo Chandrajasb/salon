@@ -206,7 +206,7 @@ adminRouter.get("/feedbacks", adminAuthenticate, async (req, res) => {
 
 adminRouter.get("/userlist", adminAuthenticate, async (req, res) => {
   try {
-    const user = await user.find();
+    const user = await User.find();
     if (!user) {
       throw new Error("User not found");
     }

@@ -206,4 +206,16 @@
   font-weight: 400;
   font-size: 12px;
 }
+.backto
+{
+  position: absolute;
+  z-index: 9999;
+  margin: 2vh 2vw;
+  
+}
+.backto a
+{
+  color: #f26967;
+  text-decoration: none;
+}
 /*# sourceMappingURL=login.css.map */

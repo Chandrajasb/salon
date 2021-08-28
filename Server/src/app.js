@@ -238,7 +238,7 @@ app.get("/allservices", async (req, res) => {
     console.log(Services);
     return res
       .status(201)
-      .render("userservices", { Services: Services, });
+      .render("Services", { Services: Services, });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);

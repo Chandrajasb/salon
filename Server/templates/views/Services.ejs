@@ -6,20 +6,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aesthetic</title>
+    <link rel="stylesheet" href="/css/recent.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="stylesheet" href="/css/logo.css" />
 </head>
 
 <body>
-    <form action="/addService" method="POST">
-        <input type="text" name="serviceName" placeholder="Service Name" required>
-        <input type="text" name="cost" placeholder="cost" required>
-        Male
-        <input type="radio" name="gender" value="male" required />
-        <span class="checkmark"></span>
-        Female
-        <input type="radio" name="gender" value="female" required />
-        <span class="checkmark"></span>
-        <button type="submit">Add</button>
-    </form>
+
+    <nav class="navbar-sec">
+        <div class="navbar">
+          <div class="nav-items">
+            <a class="nav-link" href="/aboutus">About</a>
+            <a class="nav-link" href="/services">Services</a>
+            <a class="nav-link" href="/contactus">Contact</a>
+            <a class="nav-link" href="/login">login</a>
+          </div>
+          <div class="nav-logo">
+            <p class="logo">AESTHETIC</p>
+          </div>
+          <div class="nav-button">
+            <a href="./appointment"><button >Shedule Appointment</button></a>
+          </div>
+        </div>
+      </nav>
+      <section class="recent-body">
+        <h1 style="text-align: center">List of Services </h1>
+        <div class="service-card-div">
+          <% if(Services.length!=0){ var i=1; Services.forEach(function(Services){
+          %>
+          <div class="service-card card-color">
+            <h1><%= Services.serviceName %></h1>
+            <p style="color: #fff">For: <%= Services.gender%></p>
+            <h4>cost: <%= Services.cost %></h4>
+          </div>
+          <% i++; }) %> <% } %>
+        </div>
+      </section>
 </body>
 
 </html>
