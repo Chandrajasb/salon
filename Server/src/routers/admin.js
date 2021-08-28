@@ -175,6 +175,7 @@ adminRouter.get("/admin/appointmentSalon", adminAuthenticate, async (req, res) =
     console.log(err);
   }
 });
+
 adminRouter.get("/admin/appointmentPendingSalon", adminAuthenticate, async (req, res) => {
   try {
     const appointmentspendingSalon = await AppointmentSalon.find({ status: "pending" });
@@ -183,21 +184,23 @@ adminRouter.get("/admin/appointmentPendingSalon", adminAuthenticate, async (req,
     }
     console.log(appointmentspendingSalon);
 
-    // res.render("admin-appointmentsSalon", { appointmentspendingSalon: appointmentspendingSalon });
+    res.render("admin-appointmentPendingSalon", { appointmentspendingSalon: appointmentspendingSalon });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);
   }
 });
+
 adminRouter.get("/admin/appointmentPending", adminAuthenticate, async (req, res) => {
   try {
     const appointmentspending = await Appointment.find({ status: "pending" });
+    const beautician = await Beautician.find();
     if (!appointmentspending) {
       throw new Error("Appointments not found");
     }
     console.log(appointmentspending);
 
-    // res.render("admin-appointments", { appointmentspending: appointmentspending });
+    res.render("admin-appointmentPending", { appointmentspending: appointmentspending, beautician: beautician });
   } catch (err) {
     res.status(401).send("Unauthorized:No token provided");
     console.log(err);
@@ -267,7 +270,7 @@ adminRouter.put("/editAppointment/:id", adminAuthenticate, async (req, res) => {
     const appointment = await Appointment.findByIdAndUpdate(_id, req.body, {
       new: true,
     });
-    res.redirect("/admin/appointment");
+    res.redirect("/admin/appointmentPending");
     console.log(appointment);
   } catch (err) {
     res.status(500).send(err);
@@ -281,7 +284,7 @@ adminRouter.put("/editAppointmentSalon/:id", adminAuthenticate, async (req, res)
     const appointmentSalon = await AppointmentSalon.findByIdAndUpdate(_id, req.body, {
       new: true,
     });
-    res.redirect("/admin/appointmentSalon");
+    res.redirect("/admin/appointmentPendingSalon");
     console.log(appointmentSalon);
   } catch (err) {
     res.status(500).send(err);

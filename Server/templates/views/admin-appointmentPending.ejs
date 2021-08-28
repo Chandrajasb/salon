@@ -57,9 +57,10 @@
       </div>
     </div>
 
+
     <section class="mt-5" >
       <h1 style="text-align: center" >
-       All Appointments at Salon
+        appointmentspending at DoarStep Pending
     </h1>
 
     <table>
@@ -71,36 +72,56 @@
           <th>time</th>
           <th>service</th>
           <th>status</th>
+          <th>Assigned</th>
           <th>Rating</th>
           <th>feedback</th>
-          
-         
+          <th>Beautician</th>
+          <th>Assign</th>
           
 
         </thead>
         
             <%
-           if(appointmentsSalon.length!=0){
+           if(appointmentspending.length!=0){
            var i=1;
-           appointmentsSalon.forEach(function(appointmentsSalon){
+           appointmentspending.forEach(function(appointmentspending){
            %>
            <tbody id="tbody">
                <tr>
-            <td><%=appointmentsSalon.name %></td>
-            <td><%=appointmentsSalon.phone %></td>
-            <td><%=appointmentsSalon.gender %></td>
-            <td><%=appointmentsSalon.date %></td>
-            <td><%=appointmentsSalon.time %></td>
-            <td><%=appointmentsSalon.service %></td>
-            <td><%=appointmentsSalon.status %></td>
-            <% if(appointmentsSalon.rate == 0){ %>
+            <td><%=appointmentspending.name %></td>
+            <td><%=appointmentspending.phone %></td>
+            <td><%=appointmentspending.gender %></td>
+            <td><%=appointmentspending.date %></td>
+            <td><%=appointmentspending.time %></td>
+            <td><%=appointmentspending.service %></td>
+            <td><%=appointmentspending.status %></td>
+            <td><%=appointmentspending.assign %></td>
+            <% if(appointmentspending.rate == 0){ %>
             <td>Yet to Rate</td>
             <td>--</td>
             <% } else{ %> 
-              <td><%=appointmentsSalon.rate %></td>
-            <td><%=appointmentsSalon.feedback %></td>
+              <td><%=appointmentspending.rate %></td>
+            <td><%=appointmentspending.feedback %></td>
             <% } %>
-            
+            <form action="/editAppointment/<%=appointmentspending._id%>?_method=PUT" method="post">
+            <td> <select name="assign" >
+              <option >Select Beautician</option>
+              
+            <%
+            if(beautician.length!=0){
+            var i=1;
+            beautician.forEach(function(beautician){
+            %>
+              <option value="<%=beautician._id %>"><%=beautician.name %></option>
+              <%  i++; }) %>
+              <% } %>
+
+              
+             
+            </select></td>
+            <td> <button class="btn btn-edit color-y">Assign</button></td> 
+          </form>
+                 
             
              </tr>
         </tbody>

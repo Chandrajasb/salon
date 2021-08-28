@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/login.css" />
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/logo.css" />
+    <link rel="stylesheet" href="css/admin.css" />
     <script
       src="https://kit.fontawesome.com/154fa5a621.js"
       crossorigin="anonymous"
@@ -18,24 +19,45 @@
     <nav class="navbar-sec">
       <div class="navbar">
         <div class="nav-items">
-          <!-- <a class="nav-link" href="/adminpage">home</a> -->
-          <a class="nav-link"  href="/adminpage" >Home</a>
+          <a class="nav-link" href="/adminpage">Home</a>
           <a class="nav-link" href="/listServices">Services</a>
-          
-          <a class="nav-link" href="">appointment</a>
+          <a class="nav-link" href="/userlist">users</a>
+          <a class="nav-link" href="/feedbacks">Messages</a>
           <a class="nav-link" href="/addBeautician">beautician </a>
         </div>
         <div class="nav-logo">
           <h1 class="logo">AESTHETIC</h1>
         </div>
         <div class="nav-button">
-          <a href="/addservice"><button id="myBtn">Add services</button></a>
+          <a href="/addservice"><button>Add services</button></a>
+        </div>
+        <div class="nav-button">
+          <button id="myBtn">Appointments</button>
         </div>
       </div>
     </nav>
-    <section class="list-Beautician-sec" style="margin:5vh auto">
-        <h1 >
-            Beautician's
+  
+  
+  
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1> Appointment at</h1>
+        <div style="margin-top: 5vh">
+          <a href="/admin/appointmentPending"><button class="btn-nav">Doarstep appointments Pending </button></a>
+          <a href="/admin/appointmentPendingSalon"><button class="btn-nav">salon appointments Pending</button></a>
+          <a href="/admin/appointment"><button class="btn-nav">All Doarstep appointments </button></a>
+          <a href="/admin/appointmentSalon"><button class="btn-nav">All salon appointments</button></a>
+  
+        </div>
+      </div>
+    </div>
+  
+
+    <section style="padding-top:15vh ">
+        <h1 style="text-align:center" >
+           User's
         </h1>
     
         <table>
@@ -73,4 +95,5 @@
     
     </section>
   </body>
+  <script src="/js/model.js"></script>
 </html>

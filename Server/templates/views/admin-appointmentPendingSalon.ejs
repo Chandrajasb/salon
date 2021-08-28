@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="/css/index.css" />
     <link rel="stylesheet" href="/css/admin.css" />
     <link rel="stylesheet" href="css/logo.css" />
+
+    
+    <script src="/js/model.js"></script>
     <script
       src="https://kit.fontawesome.com/154fa5a621.js"
       crossorigin="anonymous"
@@ -21,7 +24,7 @@
         <div class="nav-items">
           <a class="nav-link" href="/adminpage">Home</a>
           <a class="nav-link" href="/listServices">Services</a>
-          <a class="nav-link" href="/userlist">users</a>
+          <a class="nav-link" href="/userlist">Users</a>
           <a class="nav-link" href="/feedbacks">Messages</a>
           <a class="nav-link" href="/addBeautician">beautician </a>
         </div>
@@ -54,39 +57,63 @@
       </div>
     </div>
 
-    <section  style="padding-top:15vh ">
-        <h1 style="text-align: center">
-            Messages
-        </h1>
-    
-        <table>
-            <thead>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Message</th>
-              
-            </thead>
+    <section class="mt-5" >
+      <h1 style="text-align: center" >
+        Appointments at Salon Pending
+    </h1>
+
+    <table>
+        <thead>
+          <th>Name</th>
+          <th>Phone Number</th>
+          <th>Gender</th>
+          <th>date</th>
+          <th>time</th>
+          <th>service</th>
+          <th>status</th>
+          <th>Rating</th>
+          <th>feedback</th>
+          
+          <th>Update</th>
+          
+
+        </thead>
+        
+            <%
+           if(appointmentspendingSalon.length!=0){
+           var i=1;
+           appointmentspendingSalon.forEach(function(appointmentspendingSalon){
+           %>
+           <tbody id="tbody">
+               <tr>
+            <td><%=appointmentspendingSalon.name %></td>
+            <td><%=appointmentspendingSalon.phone %></td>
+            <td><%=appointmentspendingSalon.gender %></td>
+            <td><%=appointmentspendingSalon.date %></td>
+            <td><%=appointmentspendingSalon.time %></td>
+            <td><%=appointmentspendingSalon.service %></td>
+            <td><%=appointmentspendingSalon.status %></td>
+            <% if(appointmentspendingSalon.rate == 0){ %>
+            <td>Yet to Rate</td>
+            <td>--</td>
+            <% } else{ %> 
+              <td><%=appointmentspendingSalon.rate %></td>
+            <td><%=appointmentspendingSalon.feedback %></td>
+            <% } %>
+            <td> <form action="/editAppointmentSalon/<%=appointmentspendingSalon._id%>?_method=PUT" method="post"><input type="text" name="status" value="completed" style="display: none;"> <button class="btn btn-edit color-y">Update as Completed</button> </form>
+                 </td>
             
-                <%
-               if(feebacks.length!=0){
-               var i=1;
-               feebacks.forEach(function(feebacks){
-               %>
-               <tbody id="tbody">
-                   <tr>
-                <td><%=feebacks.name %></td>  
-                <td><%=feebacks.email %></td>
-                <td><%=feebacks.message %></td>
-               
-                
-            </tbody>
-    
-                <%  i++; }) %>
-                 <% } %>
-    
-        </table>
-    
+             </tr>
+        </tbody>
+
+            <%  i++; }) %>
+             <% } %>
+
+    </table>
+
     </section>
+
+
   </body>
   <script src="/js/model.js"></script>
-</html>
+  </html>
